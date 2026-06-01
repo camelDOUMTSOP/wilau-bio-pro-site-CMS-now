@@ -182,28 +182,136 @@ document.addEventListener('DOMContentLoaded', () => {
             window.addEventListener('resize', updateSlider);
         }, 500);
     }
-});
+    // ==========================================================================
+// MOTEUR DYNAMIQUE DU BLOG
+// ==========================================================================
+const blogGrid = document.getElementById('blog-grid');
 
+if (blogGrid) {
+    const repoOwner = "camelDOUMTSOP";
+    const repoName = "wilau-bio-pro-site-CMS-now";
+    const folderPath = "content/blog";
+    const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}?ref=main`;
+
+    async function initBlog() {
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) return;
+            const files = await response.json();
+            const mdFiles = files.filter(file => file.name.endsWith('.md'));
+
+            if (mdFiles.length > 0) {
+                blogGrid.innerHTML = "";
+                for (const file of mdFiles) {
+                    const fileResponse = await fetch(file.download_url);
+                    const rawText = await fileResponse.text();
+                    const data = parseFrontmatter(rawText);
+
+                    const card = document.createElement('article');
+                    card.className = "blog-card full-shadow";
+                    card.innerHTML = `
+                        <div class="img-wrapper aspect-landscape">
+                            <img src="${data.image || 'assets/images/wilau img 8.jpg'}" alt="${data.title}">
+                        </div>
+                        <div class="blog-info p-2">
+                            <h3>${data.title}</h3>
+                            <p>${data.description || ''}</p>
+                            <a href="article.html?file=${encodeURIComponent(file.name)}" class="btn btn-outline small mt-1">Lire l'article</a>
+                        </div>`;
+                    blogGrid.appendChild(card);
+                }
+            }
+        } catch (error) {
+            console.error("Erreur blog :", error);
+        }
+    }
+
+    function parseFrontmatter(text) {
+        const data = {};
+        const matches = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+        if (matches) {
+            matches[1].split('\n').forEach(line => {
+                const parts = line.split(':');
+                if (parts.length >= 2) {
+                    data[parts[0].trim()] = parts.slice(1).join(':').trim().replace(/^["']|["']$/g, '');
+                }
+            });
+        }
+        return data;
+    }
+
+    initBlog();
+}
 // ==========================================================================
-// 5. FONCTION GLOBALE POUR COLLAPSE/EXPAND (Masquer / Afficher la description)
+// LECTEUR D'ARTICLE
 // ==========================================================================
-function toggleDescription(button) {
-    const descriptionElement = button.nextElementSibling;
-    const icon = button.querySelector('i');
-    
-    if (descriptionElement.style.display === 'none' || descriptionElement.style.maxHeight === '0px') {
-        descriptionElement.style.display = 'block';
-        setTimeout(() => {
-            descriptionElement.style.maxHeight = '200px'; 
-            descriptionElement.style.opacity = '1';
-        }, 10);
-        button.innerHTML = 'Masquer la description <i class="fas fa-chevron-up" style="font-size:0.65rem;"></i>';
+const articleContent = document.getElementById('article-content');
+
+if (articleContent) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const fileName = urlParams.get('file');
+
+    if (!fileName) {
+        articleContent.innerHTML = "<p class='center'>Aucun article spécifié.</p>";
     } else {
-        descriptionElement.style.maxHeight = '0px';
-        descriptionElement.style.opacity = '0';
-        setTimeout(() => {
-            descriptionElement.style.display = 'none';
-        }, 300);
-        button.innerHTML = 'Voir la description <i class="fas fa-chevron-down" style="font-size:0.65rem;"></i>';
+        const repoOwner = "camelDOUMTSOP";
+        const repoName = "wilau-bio-pro-site-CMS-now";
+        const articleUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/content/blog/${fileName}?ref=main`;
+
+        async function loadArticle() {
+            try {
+                const response = await fetch(articleUrl);
+                if (!response.ok) throw new Error("Article introuvable");
+                const fileData = await response.json();
+
+                const binaryString = atob(fileData.content.replace(/\s/g, ''));
+                const bytes = new Uint8Array(binaryString.length);
+                for (let i = 0; i < binaryString.length; i++) {
+                    bytes[i] = binaryString.charCodeAt(i);
+                }
+                const rawText = new TextDecoder('utf-8').decode(bytes);
+
+                const matches = rawText.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*([\s\S]*)$/);
+                let title = "Article";
+                let image = "";
+                let bodyHtml = rawText;
+
+                if (matches) {
+                    matches[1].split(/\r?\n/).forEach(line => {
+                        const parts = line.split(':');
+                        if (parts.length >= 2) {
+                            const key = parts[0].trim();
+                            const val = parts.slice(1).join(':').trim().replace(/^["']|["']$/g, '');
+                            if (key === 'title') title = val;
+                            if (key === 'image') image = val;
+                        }
+                    });
+                    bodyHtml = matches[2];
+                }
+
+                let cleanBody = bodyHtml
+                    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                    .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+                    .trim()
+                    .replace(/\n/g, '<br>');
+
+                articleContent.innerHTML = `
+                    <h1 style="font-size:2.2rem; font-family:'Playfair Display',serif; margin-bottom:15px; color:var(--color-dark);">${title}</h1>
+                    <span style="color:var(--color-gold); font-size:0.85rem; font-weight:600; display:block; margin-bottom:25px;">PAR WILAU MAGAZINE • CONSEIL BEAUTÉ</span>
+                    ${image ? `<img src="${image}" alt="${title}" style="width:100%; max-height:400px; object-fit:cover; border-radius:8px; margin-bottom:30px;">` : ''}
+                    <div style="font-size:1.05rem; line-height:1.8; color:#374151; font-family:'Montserrat',sans-serif;">
+                        ${cleanBody}
+                    </div>`;
+
+            } catch (error) {
+                console.error("Erreur chargement article :", error);
+                articleContent.innerHTML = "<p style='color:red; text-align:center; padding:2rem;'>Erreur lors du chargement de l'article.</p>";
+            }
+        }
+        loadArticle();
     }
 }
+});
+
