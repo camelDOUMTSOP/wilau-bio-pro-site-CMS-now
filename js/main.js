@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 30, image: "gamme kymy.jpeg", category: "pack", name: "Pack Kimmy", desc: "Le secret du teint caramel parfait en un coffret.", price: "25 000" },
             { id: 31, image: "gamme diva.jpeg", category: "pack", name: "Pack Diva", desc: "Routine clarifiante intégrale pour un visage et corps sans taches.", price: "30 000" },
             { id: 32, image: "gamme diamond.jpeg", category: "pack", name: "Pack Diamond", desc: "Luxe suprême pour un éclaircissement intense et anti-âge.", price: "32 500" },
-            { id: 33, image: "gamme fathy.jpeg", category: "pack", name: "Pack Faithy", desc: "Gamme capillaire complète pour la force et la pousse.", price: "30 000" }
+            { id: 33, image: "gamme fathy.jpeg", category: "pack", name: "Pack Faithy", desc: "Gamme capillaire complète pour la force et la pousse.", price: "40 000" }
         ];
 
         function displayProducts(filter = "all") {
