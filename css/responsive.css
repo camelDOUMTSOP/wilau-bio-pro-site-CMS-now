@@ -1,0 +1,257 @@
+/* ==========================================================================
+   RESPONSIVE DESIGN (Tablets & Mobiles)
+   ========================================================================== */
+
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+/* ==========================================================================
+   TABLETS (Max 1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .grid-4 { grid-template-columns: repeat(3, 1fr); }
+    #products-grid { grid-template-columns: repeat(3, 1fr) !important; }
+}
+
+/* ==========================================================================
+   TABLETS (Max 992px)
+   ========================================================================== */
+@media (max-width: 992px) {
+    .split-layout, .split-layout.reverse { flex-direction: column; text-align: center; }
+    .split-layout .img-wrapper { width: 100%; }
+
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+
+    .hero { min-height: auto; flex-direction: column; }
+    .hero-image {
+        position: relative;
+        width: 100%;
+        height: 50vh;
+        order: -1;
+        border-radius: 0 0 2rem 2rem;
+        box-shadow: none;
+    }
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 3rem 5% 5rem 5%;
+        text-align: center;
+    }
+    .hero-buttons { justify-content: center; }
+
+    .about-summary .split-layout.reverse { gap: 0; }
+    .founder-img { height: 350px !important; border-radius: 1.5rem; margin-bottom: 0; }
+    .founder-img img { object-position: center top !important; transform: scale(1.05); }
+    .about-summary .text-content {
+        margin-top: -60px;
+        position: relative;
+        z-index: 10;
+        background: var(--color-darker);
+        padding: 2rem;
+        border-radius: 1.5rem;
+    }
+
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ==========================================================================
+   MOBILES (Max 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    .accent-font { font-size: 1.5rem; }
+    .section-padding { padding: 4rem 0; }
+
+    .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 2rem; }
+
+    /* Grille Catalogue boutique : 2 colonnes */
+    .grid-4, #products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        padding: 5px !important;
+    }
+
+    /* Images du catalogue boutique */
+    .product-card .img-wrapper,
+    .premium-card .img-wrapper {
+        height: auto !important;
+        aspect-ratio: 3 / 4 !important;
+        padding: 1px;
+    }
+
+    /* Compactage des textes catalogue */
+    .product-info { padding: 0.4rem 0.4rem 0 !important; }
+    .product-info .product-category { font-size: 0.65rem !important; margin-bottom: 1px !important; }
+    .product-info h3 { font-size: 0.8rem !important; line-height: 1.2 !important; margin-bottom: 2px !important; }
+
+    /* Description boutique mobile : Entière, ultra-fine (Style Capture d'Écran) */
+    .product-info .product-description {
+        display: block !important;       
+        overflow: visible !important;    
+        -webkit-line-clamp: unset !important; 
+        font-size: 0.62rem !important;   
+        line-height: 1.2 !important;     
+        color: #71717a !important;       
+        margin: 2px 0 4px 0 !important;  
+        min-height: auto !important;     
+        text-align: center;
+    }
+
+    .product-info .product-price {
+        font-size: 0.85rem !important;
+        font-weight: 700 !important;
+        margin: 0px 0 2px 0 !important; 
+    }
+
+    .product-info .btn { padding: 6px 10px !important; font-size: 0.75rem !important; width: 100% !important; }
+
+    /* ==========================================================================
+       ACCUEIL : BEST-SELLERS MOBILE (CORRECTION AFFICHAGE ENTIER)
+       ========================================================================== */
+    .home-products { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+    .home-products .premium-card { padding: 10px !important; border-radius: 1.5rem; }
+    .home-products .premium-card .img-wrapper { height: auto !important; aspect-ratio: 3 / 4 !important; }
+    .home-products h3 { font-size: 0.8rem !important; margin: 4px 0 2px 0 !important; }
+    
+    .home-products .desc-mobile-hide {
+        display: block !important;       
+        overflow: visible !important;    
+        -webkit-line-clamp: unset !important; 
+        font-size: 0.62rem !important;   
+        line-height: 1.2 !important;
+        color: #71717a !important;
+        margin: 4px 0 6px 0 !important;
+        min-height: auto !important;     
+        text-align: center;
+    }
+   
+    .home-products .btn { padding: 6px 10px !important; font-size: 0.75rem !important; border-radius: 0.5rem; width: 100%; }
+    .badge-best-seller { font-size: 0.55rem; padding: 3px 8px; top: -8px; }
+
+    /* ==========================================================================
+       SECTION TÉMOIGNAGES MOBILE (ALIGNE UN SEUL SMARTPHONE AU CENTRE)
+       ========================================================================== */
+    .testimonial-slider {
+        width: 100% !important;
+        max-width: 290px !important; 
+        margin: 0 auto !important;
+    }
+    .testimonial-slide { width: 100% !important; min-width: 100% !important; padding: 0 !important; }
+    .testimonial-slide img {
+        width: 100% !important;
+        height: 420px !important; 
+        object-fit: contain !important; 
+        border-radius: 16px !important;
+    }
+    .slider-arrow { width: 30px !important; height: 30px !important; font-size: 0.9rem !important; }
+    .slider-arrow.prev { left: -25px !important; }
+    .slider-arrow.next { right: -25px !important; }
+
+    /* Éléments Communs Mobiles */
+    .hero-buttons { flex-direction: column; }
+    .hamburger { display: flex; z-index: 1002; position: relative; }
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: var(--color-dark);
+        padding-top: 8rem;
+        transition: var(--transition);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        z-index: 1001;
+    }
+    .nav-menu.active { right: 0; }
+    .nav-menu ul { flex-direction: column; align-items: center; gap: 2rem; }
+    .nav-menu a { color: var(--color-white) !important; font-size: 1.1rem; }
+
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .founder-img { height: 280px !important; }
+    .about-summary .text-content { margin-top: -80px; padding: 1.5rem; }
+
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .footer-title::after { left: 50%; transform: translateX(-50%); }
+    .footer-col ul { align-items: center; }
+    .social-links { justify-content: center; }
+
+    .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
+    .whatsapp-float i { font-size: 28px; }
+}
+
+/* ==========================================================================
+   PETITS MOBILES (Max 400px)
+   ========================================================================== */
+@media (max-width: 400px) {
+    .product-card .img-wrapper, .premium-card .img-wrapper { padding: 4px; }
+    .product-info h3 { font-size: 0.78rem !important; }
+}/* ==========================================================================
+       SECTION TÉMOIGNAGES MOBILE (ALIGNE UN SEUL SMARTPHONE AU CENTRE)
+       ========================================================================== */
+    .testimonial-slider-container {
+        max-width: 260px !important; /* Force la zone visible à la taille exacte d'un smartphone */
+        margin: 0 auto !important;
+        position: relative !important;
+    }
+
+    .testimonial-slider {
+        width: 100% !important;
+        max-width: 260px !important; /* Bloque l'affichage à un seul téléphone */
+        margin: 0 auto !important;
+        overflow: hidden !important;
+    }
+
+    .testimonial-track {
+        display: flex !important;
+        gap: 20px !important; /* On remet le gap de 20px pour correspondre au code JavaScript (+ 20) */
+    }
+
+    .testimonial-slide { 
+        width: 260px !important; /* Taille fixe et stricte par slide sur mobile */
+        min-width: 260px !important;
+        flex-shrink: 0 !important;
+        padding: 0 !important; 
+    }
+
+    .testimonial-slide img {
+        width: 100% !important;
+        height: 400px !important; /* Hauteur compacte et élégante */
+        object-fit: contain !important; 
+        border-radius: 16px !important;
+        border: 2px solid var(--color-gold) !important;
+    }
+
+    /* Ajustement des flèches pour qu'elles restent à l'extérieur du téléphone */
+    .slider-arrow { 
+        width: 32px !important; 
+        height: 32px !important; 
+        font-size: 0.9rem !important;
+    }
+    .slider-arrow.prev { left: -45px !important; }
+    .slider-arrow.next { right: -45px !important; }/* ==========================================================================
+       FORCE LE ZOOM MAXIMUM DE L'IMAGE SUR MOBILE (Max 768px)
+       ========================================================================== */
+    .product-card .img-wrapper img,
+    .premium-card .img-wrapper img,
+    #products-grid .product-card .img-wrapper img,
+    .home-products .premium-card .img-wrapper img {
+        transform: scale(1.25) !important; /* Zoom puissant à 25% */
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        transition: transform 0.4s ease !important;
+    }
+
+    .product-card .img-wrapper,
+    .premium-card .img-wrapper,
+    #products-grid .product-card .img-wrapper,
+    .home-products .premium-card .img-wrapper {
+        padding: 0px !important; /* Supprime tout espace blanc interne */
+    }

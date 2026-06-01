@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produits & Services | WiLAU BIO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <img src="assets/logos/logo wilau.jpg" alt="Logo WiLAU BIO" style="height: 48px; width: auto; object-fit: contain;">
+                <div class="logo-text">
+                    <span class="logo-title">WiLAU BIO</span>
+                    <span class="logo-subtitle">Cosmétique</span>
+                </div>
+            </a>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="produits-services.html" class="active">Produits & Services</a></li>
+                    <li><a href="a-propos-contact.html">À propos & Contact</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="shop-section section-padding bg-cream">
+        <div class="container">
+            <div class="section-header center">
+                <span class="accent-font gold-text">E-Boutique</span>
+                <h1>Nos Gammes Naturelles</h1>
+                <p>Découvrez nos 28 solutions expertes pour sublimer votre éclat.</p>
+            </div>
+
+            <div class="filter-container center mt-2" id="product-filters">
+                <button class="filter-btn active" data-filter="all">Tout voir</button>
+                <button class="filter-btn" data-filter="visage">Visage</button>
+                <button class="filter-btn" data-filter="corps">Corps</button>
+                <button class="filter-btn" data-filter="cheveux">Cheveux</button>
+                <button class="filter-btn" data-filter="pack">Packs</button>
+            </div>
+
+            <div id="products-grid" class="grid-4 mt-3">
+                </div>
+        </div>
+    </section>
+
+    <section class="services-catalog section-padding" style="background-color: #fff;">
+        <div class="container">
+            <div class="section-header center">
+                <span class="accent-font gold-text">L'Expérience Cabinet</span>
+                <h2>Nos Prestations Professionnelles</h2>
+                <p class="gold-text" style="font-weight: 600;">📍 Yaoundé (Titi Garage) </p>
+            </div>
+            </div>
+            <div class="grid-3 mt-3">
+                <div class="value-card reveal" style="background: var(--color-cream); border: 1px solid #eee;">
+                    <i class="fas fa-spa gold-text" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3 class="gold-text">Massages & Détente</h3>
+                    <ul style="list-style: none; padding: 0; line-height: 2;">
+                        <li>Massage Simple (35 min) : <strong>10 000 F</strong></li>
+                        <li>Massage + Hammam : <strong>15 000 F</strong></li>
+                        <li>Massage + Soin Visage : <strong>18 000 F</strong></li>
+                    </ul>
+                </div>
+
+                <div class="value-card reveal" style="background: var(--color-cream); border: 1px solid #eee;">
+                    <i class="fas fa-hot-tub gold-text" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3 class="gold-text">Spa & Purification</h3>
+                    <ul style="list-style: none; padding: 0; line-height: 2;">
+                        <li>Gommage + Hammam : <strong>10 000 F</strong></li>
+                        <li>Gommage simple : <strong>8 000 F</strong></li>
+                        <li>Sauna /hammam: <strong>3 500 F</strong></li>
+                    </ul>
+                </div>
+
+                <div class="value-card reveal" style="background: var(--color-cream); border: 1px solid #eee;">
+                    <i class="fas fa-magic gold-text" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <h3 class="gold-text">Esthétique & Onglerie</h3>
+                    <ul style="list-style: none; padding: 0; line-height: 2;">
+                        <li>Pédicure complète : <strong>5 000 F</strong></li>
+                        <li>Manucure : <strong>2 500 F</strong></li>
+                        <li>Épilation Visage : <strong>4 000 F</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cta-premium mt-4 reveal">
+                <div class="premium-box center p-3 bg-dark text-light" style="border-radius: 20px; border: 2px solid var(--color-gold);">
+                    <h3 class="gold-text" style="font-family: var(--font-heading); font-size: 1.8rem;">Le Pack "Bichonné" Royal</h3>
+                    <p>Hammam + Massage + Pédicure + Manucure + Soin de Visage</p>
+                    <div class="price-tag" style="font-size: 2.5rem; font-weight: 700; margin: 1rem 0;">30 000 FCFA</div>
+                    <a href="https://wa.me/237699430350?text=Je souhaite réserver le Pack Royal à 30.000 FCFA" class="btn btn-primary">Réserver mon instant</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<footer class="footer-pro">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <h2 class="gold-text" style="font-family: var(--font-heading); margin-bottom: 1rem;">WiLAU BIO</h2>
+                    <p>L'excellence cosmétique pour sublimer la peau africaine. Des formules naturelles, saines et authentiques.</p>
+                    <div class="social-links" style="justify-content: flex-start;">
+                        <a href="https://www.facebook.com/share/1AywynfpGF/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/wilau_bio?igsh=MTlrMHpuNmMzYnd6bw==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@wilau_mama?_r=1&_t=ZS-96MEjpm3Xqa" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col links-col">
+                    <h3 class="footer-title">Navigation</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="produits-services.html">La Boutique</a></li>
+                        <li><a href="a-propos-contact.html">Notre Histoire</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col contact-col">
+                    <h3 class="footer-title">Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt gold-text"></i> Douala, Cameroun</li>
+                        <li><i class="fab fa-whatsapp gold-text"></i> +237 699 430 350</li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter-col">
+                    <h3 class="footer-title">Newsletter</h3>
+                    <p>Recevez nos astuces beauté.</p>
+                    <form class="newsletter-form" action="#">
+                        <input type="email" placeholder="Votre e-mail" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 WiLAU BIO. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

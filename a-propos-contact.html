@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos & Contact | Wilau Bio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-wrapper">
+                <img src="assets/logos/logo wilau.jpg" alt="Logo WiLAU BIO" style="height: 48px; width: auto; object-fit: contain;">
+                <div class="logo-text">
+                    <span class="logo-title">WiLAU BIO</span>
+                    <span class="logo-subtitle">Cosmétique</span>
+                </div>
+            </a>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="produits-services.html">Produits & Services</a></li>
+                    <li><a href="a-propos-contact.html" class="active">À propos & Contact</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-banner reveal" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1555820598-c61a5b4f2c05?q=80&w=1920&auto=format&fit=crop');">
+        <div class="container center text-light">
+            <h1>Notre Histoire</h1>
+            <p class="accent-font gold-text">De l'Expertise à la Création</p>
+        </div>
+    </section>
+
+    <section class="story-section bg-cream section-padding reveal">
+        <div class="container split-layout">
+            <div class="img-wrapper aspect-portrait">
+                <img src="assets/images/wilau imgt.jpg" alt="Préparation de soins cosmétiques">
+            </div>
+            <div class="text-content">
+                <span class="accent-font gold-text">La Genèse</span>
+                <h2>Comment Wilau Bio est née</h2>
+                <p>En tant qu'esthéticienne et cosmétologue diplômée d'État, la fondatrice a passé des années au contact direct des problématiques de peau et de cheveux des femmes africaines.</p>
+                <p>Le constat était clair : la plupart des produits importés n'étaient pas adaptés au climat, à la texture de nos cheveux ou aux besoins spécifiques de notre carnation. Pire, beaucoup altéraient la beauté naturelle des peaux foncées au lieu de la protéger.</p>
+                <p>La création a commencé par un besoin personnel. Des préparations maison, respectueuses, qui ont rapidement attiré l'attention des clientes bluffées par les résultats. C'est ainsi que Wilau Bio a officiellement vu le jour, avec la promesse d'une beauté saine.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section bg-dark text-light section-padding reveal">
+        <div class="container">
+            <div class="section-header center">
+                <span class="accent-font gold-text">Nos Piliers</span>
+                <h2>Ce qui nous définit</h2>
+            </div>
+            <div class="grid-3 center">
+                <div class="value-card">
+                    <h3 class="gold-text">Inclusivité</h3>
+                    <p style="color: #ffffff;">Valorisation des peaux noires et métissées avec des formules qui subliment chaque nuance de teint.</p>
+                </div>
+                <div class="value-card">
+                    <h3 class="gold-text">Expertise</h3>
+                    <p style="color: #ffffff;">Des produits élaborés sur la base de connaissances scientifiques en cosmétologie et esthétique.</p>
+                </div>
+                <div class="value-card">
+                    <h3 class="gold-text">Authenticité</h3>
+                    <p style="color: #ffffff;">Des soins qui ne dénaturent pas, qui traitent en profondeur pour révéler votre vraie beauté.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section bg-cream section-padding reveal">
+        <div class="container split-layout">
+            <div class="text-content">
+                <span class="accent-font gold-text">Contactez-nous</span>
+                <h2>Discutons de votre Beauté</h2>
+                <p>Vous souhaitez des conseils personnalisés, en savoir plus sur nos produits ou prendre rendez-vous au cabinet ?</p>
+                <div class="contact-info mt-2">
+                    <p><strong>WhatsApp Direct :</strong><br>
+                   <a href="https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20je%20viens%20de%20parcourir%20votre%20page%20contact%20et%20j'aimerais%20échanger%20avec%20vous%20concernant%20vos%20services." class="gold-text" target="_blank">+237 6 99 43 03 50</a>
+                    <p><strong>Localisation :</strong><br> Cameroun</p>
+                </div>
+            </div>
+            <div class="contact-form-ui">
+                <form class="premium-form" onsubmit="sendToWhatsApp(event)">
+                    <div class="form-group">
+                        <label for="name">Votre Nom</label>
+                        <input type="text" id="name" placeholder="Ex: Amina" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Sujet</label>
+                        <select id="subject">
+                            <option>Conseil produit</option>
+                            <option>Réservation de soin</option>
+                            <option>Partenariat</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="4" placeholder="Votre message..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Envoyer la demande</button>
+                </form>
+
+                <script>
+                    function sendToWhatsApp(event) {
+                        event.preventDefault(); // Stoppe le rechargement de la page
+                        
+                        // Récupération des mots tapés
+                        const name = document.getElementById('name').value;
+                        const subject = document.getElementById('subject').value;
+                        const message = document.getElementById('message').value;
+                        
+                        // Création du beau texte WhatsApp
+                        const text = `Bonjour Wilau Bio ! ✨\n\nJe suis *${name}*.\n*Sujet :* ${subject}\n\n*Mon message :*\n${message}`;
+                        
+                        // Génération du lien WhatsApp sécurisé et redirection forcée
+                        const url = `https://wa.me/237699430350?text=${encodeURIComponent(text)}`;
+                        window.location.href = url; // <-- LA LIGNE MAGIQUE QUI CONTOURNE LES BLOQUEURS
+                    }
+                </script>
+            </div>
+    </section>
+
+   <footer class="footer-pro">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <h2 class="gold-text" style="font-family: var(--font-heading); margin-bottom: 1rem;">WiLAU BIO</h2>
+                    <p>L'excellence cosmétique pour sublimer la peau africaine. Des formules naturelles, saines et authentiques.</p>
+                    <div class="social-links" style="justify-content: flex-start;">
+                        <a href="https://www.facebook.com/share/1AywynfpGF/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/wilau_bio?igsh=MTlrMHpuNmMzYnd6bw==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@wilau_mama?_r=1&_t=ZS-96MEjpm3Xqa" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col links-col">
+                    <h3 class="footer-title">Navigation</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="produits-services.html">La Boutique</a></li>
+                        <li><a href="a-propos-contact.html">Notre Histoire</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col contact-col">
+                    <h3 class="footer-title">Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt gold-text"></i> Douala, Cameroun</li>
+                        <li><i class="fab fa-whatsapp gold-text"></i> +237 699 430 350</li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter-col">
+                    <h3 class="footer-title">Newsletter</h3>
+                    <p>Recevez nos astuces beauté.</p>
+                    <form class="newsletter-form" onsubmit="sendNewsletter(event)">
+                        <input type="email" placeholder="Votre e-mail" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                    
+                    <script>
+                        function sendNewsletter(event) {
+                            event.preventDefault();
+                            const email = event.target.querySelector('input[type="email"]').value;
+                            const text = `Bonjour Wilau Bio ! Je souhaite inscrire mon adresse email (*${email}*) à votre Newsletter.`;
+                            window.location.href = `https://wa.me/237699430350?text=${encodeURIComponent(text)}`;
+                            event.target.reset();
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 WiLAU BIO. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/237699430350" class="whatsapp-float" target="_blank" aria-label="Contacter sur WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
