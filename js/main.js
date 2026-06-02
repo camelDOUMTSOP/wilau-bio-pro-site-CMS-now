@@ -201,7 +201,7 @@ if (blogGrid) {
             const mdFiles = files.filter(file => file.name.endsWith('.md'));
 
             if (mdFiles.length > 0) {
-                blogGrid.innerHTML = "";
+                
                 for (const file of mdFiles) {
                     const fileResponse = await fetch(file.download_url);
                     const rawText = await fileResponse.text();
