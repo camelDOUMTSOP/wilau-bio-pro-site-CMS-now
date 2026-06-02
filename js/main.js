@@ -211,8 +211,7 @@ if (blogGrid) {
                     card.className = "blog-card full-shadow";
                     card.innerHTML = `
                      <div class="img-wrapper aspect-landscape">
-                          <img src="${data.image || 'assets/images/wilau img 8.jpg'}" alt="${data.title}" style="width:100%; height:100%; object-fit:cover;">
-                     </div>
+                      <img src="${data.image || 'assets/images/wilau img 8.jpg'}" alt="${data.title}" style="width:100%; height:100%; object-fit:cover !important;">                     </div>
                         <div class="blog-info p-2">
                             <h3>${data.title}</h3>
                             <p>${data.description || ''}</p>
