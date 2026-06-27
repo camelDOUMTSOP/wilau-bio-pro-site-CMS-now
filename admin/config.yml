@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: master # Assure-toi que c'est bien le nom de ta branche principale sur Git
+  branch: main # Assure-toi que c'est bien le nom de ta branche principale sur Git
 
 # Emplacement où les images téléchargées par la cliente seront stockées
 media_folder: "assets/images/blog"

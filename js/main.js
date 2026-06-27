@@ -263,8 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             const repoOwner = "camelDOUMTSOP"; 
             const repoName = "wilau-bio-pro-site-fin";
-            const articleUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/content/blog/${encodeURIComponent(fileName)}?ref=main`;
-            async function loadArticle() {
+            const articleUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/content/blog/${fileName}?ref=main`;            async function loadArticle() {
                 try {
                     const response = await fetch(articleUrl);
                     if (!response.ok) throw new Error("Article introuvable sur GitHub");
