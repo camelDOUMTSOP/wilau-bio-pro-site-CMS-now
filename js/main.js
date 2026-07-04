@@ -190,8 +190,8 @@ card.className = `product-card reveal active ${catClass}`;
     const blogGrid = document.getElementById('blog-grid');
     
     if (blogGrid) {
-        const repoOwner = "camelDOUMTSOP"; 
-        const repoName = "wilau-bio-pro-site-fin";
+        const repoOwner = "cameldoumtsop"; 
+const repoName = "wilau-bio-pro-site-CMS-now";
         const folderPath = "content/blog";
         const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}?ref=main`;
 

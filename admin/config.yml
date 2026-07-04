@@ -1,22 +1,19 @@
 backend:
   name: git-gateway
-  branch: main # Assure-toi que c'est bien le nom de ta branche principale sur Git
+  branch: main
 
-# Emplacement où les images téléchargées par la cliente seront stockées
 media_folder: "assets/images/blog"
 public_folder: "/assets/images/blog"
 
-# Configuration de la collection du Blog
 collections:
   - name: "blog"
     label: "Articles de Blog"
-    folder: "content/blog" # Le CMS va créer un fichier Markdown (.md) par article ici
-    create: true # Autorise la cliente à créer de nouveaux articles
+    folder: "content/blog"
+    create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "Format de mise en page", name: "layout", widget: "hidden", default: "blog" }
-      - { label: "Titre de l'article", name: "title", widget: "string" }
-      - { label: "Date de publication", name: "date", widget: "datetime" }
-      - { label: "Image de couverture", name: "image", widget: "image" }
-      - { label: "Extrait / Résumé court", name: "description", widget: "text" }
-      - { label: "Corps de l'article (Contenu)", name: "body", widget: "markdown" }
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Description courte", name: "description", widget: "text" }
+      - { label: "Contenu", name: "body", widget: "markdown" }
