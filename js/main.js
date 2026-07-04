@@ -62,18 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 23, image: "le secret de meme.jpeg", category: "corps", name: "Secret de Mémé", desc: "Crème raffermissante, tonifiante et galbante pour les seins (100% naturel).", price: "7 500" },
 
             // --- CHEVEUX (5 produits) ---
-            { id: 24, image: "1.png", category: "cheveux", name: "Shampooing Faithy", desc: "Antipelliculaire. Lave et assainit le cuir chevelu en profondeur.", price: "7 500" },
-            { id: 25, image: "faity leave in conditioner.jpeg", category: "cheveux", name: "Leave-in conditioner", desc: "Démêle et protège les cheveux contre la chaleur du séchoir.", price: "7 500" },
-            { id: 26, image: "10.png", category: "cheveux", name: "Traitement Faithy", desc: "Aux plantes et beurres végétaux. Stimule la pousse et stop la casse.", price: "7 500" },
-            { id: 27, image: "creme de cheuveux faity].jpeg", category: "cheveux", name: "Huile Faithy", desc: "Nourrissante, protectrice et activatrice de pousse.", price: "7 500" },
-            { id: 28, image: "serum active pousse faity.jpeg", category: "cheveux", name: "Sérum Active Pousse", desc: "Stimule la croissance des cheveux et de la barbe.", price: "10 000" },
+            { id: 24, image: "ChampooingAntipeliculaireFaithy.jpeg", category: "cheveux", name: "Shampooing Faithy", desc: "Antipelliculaire. Lave et assainit le cuir chevelu en profondeur.", price: "7 500" },
+            { id: 25, image: "ApresChampooingFaity.jpeg", category: "cheveux", name: "Leave-in conditioner", desc: "Démêle et protège les cheveux contre la chaleur du séchoir.", price: "7 500" },
+            { id: 26, image: "TraitementFaithy.jpeg", category: "cheveux", name: "Traitement Faithy", desc: "Aux plantes et beurres végétaux. Stimule la pousse et stop la casse.", price: "7 500" },
+            { id: 27, image: "CremeCapilaireFaithy.jpeg", category: "cheveux", name: "Huile Faithy", desc: "Nourrissante, protectrice et activatrice de pousse.", price: "7 500" },
+            { id: 28, image: "SeruimActivepousseFaityM.jpeg", category: "cheveux", name: "Sérum Active Pousse", desc: "Stimule la croissance des cheveux et de la barbe.", price: "10 000" },
 
             // --- PACKS (5 nouveaux packs) ---
             { id: 29, image: "gamme shine.jpeg", category: "pack", name: "Pack Shine", desc: "Routine complète pour révéler l'éclat des peaux naturelles.", price: "22 500" },
             { id: 30, image: "gamme kymy.jpeg", category: "pack", name: "Pack Kimmy", desc: "Le secret du teint caramel parfait en un coffret.", price: "25 000" },
             { id: 31, image: "gamme diva.jpeg", category: "pack", name: "Pack Diva", desc: "Routine clarifiante intégrale pour un visage et corps sans taches.", price: "30 000" },
             { id: 32, image: "gamme diamond.jpeg", category: "pack", name: "Pack Diamond", desc: "Luxe suprême pour un éclaircissement intense et anti-âge.", price: "32 500" },
-            { id: 33, image: "gamme fathy.jpeg", category: "pack", name: "Pack Faithy", desc: "Gamme capillaire complète pour la force et la pousse.", price: "30 000" }
+            { id: 33, image: "GammeFaithyM.jpeg", category: "pack", name: "Pack Faithy", desc: "Gamme capillaire complète pour la force et la pousse.", price: "30 000" }
         ];
 
         function displayProducts(filter = "all") {
@@ -87,7 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const categoryLabel = labelMap[p.category.split(' ')[0]] || p.category.split(' ')[0];
 
             const card = document.createElement('div');
-            card.className = "product-card reveal active"; 
+            const catClass = "cat-" + p.category.split(' ')[0];
+card.className = `product-card reveal active ${catClass}`;
             card.innerHTML = `
                 <div class="img-wrapper">
                     <img src="assets/images/${p.image}" alt="${p.name}" loading="lazy">

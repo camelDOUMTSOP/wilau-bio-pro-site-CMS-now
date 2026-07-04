@@ -255,3 +255,10 @@ html, body {
     .home-products .premium-card .img-wrapper {
         padding: 0px !important; /* Supprime tout espace blanc interne */
     }
+    @media (max-width: 768px) {
+    /* Zoom renforcé Cheveux sur mobile */
+    .product-card.cat-cheveux .img-wrapper img,
+    .home-products .premium-card.cat-cheveux .img-wrapper img {
+        transform: scale(1.65) !important;
+    }
+}
