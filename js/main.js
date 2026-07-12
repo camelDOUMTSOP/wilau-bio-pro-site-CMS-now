@@ -309,6 +309,7 @@ const repoName = "wilau-bio-pro-site-CMS-now";
                     let cleanBody = bodyHtml
                         .replace(/^### (.*$)/gim, '<h3 style="margin:25px 0 15px 0; color:var(--color-dark); font-size:1.4rem;">$1</h3>')
                         .replace(/\*\*(.*)\*\*/gim, '<strong style="color:var(--color-dark);">$1</strong>')
+                        .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" class="btn btn-primary small" style="display:inline-block; margin: 10px 0;" target="_blank">$1</a>')
                         .trim()
                         .replace(/\n/g, '<br>');
 
