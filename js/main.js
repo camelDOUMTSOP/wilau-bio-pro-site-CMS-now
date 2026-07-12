@@ -251,7 +251,7 @@ const repoName = "wilau-bio-pro-site-CMS-now";
     }
 
     // ==========================================================================
-    // LECTEUR DYNAMIQUE D'ARTICLE UNIQUE (ISOLÉ & SÉCURISÉ)
+    // LECTEUR DYNAMIQUE D'ARTICLE UNIQUE (ISOLÉ & SÉCURISÉ) - CORRIGÉ 🚀
     // ==========================================================================
     const articleContent = document.getElementById('article-content');
     
@@ -263,8 +263,12 @@ const repoName = "wilau-bio-pro-site-CMS-now";
             articleContent.innerHTML = "<p class='center'>Aucun article spécifié.</p>";
         } else {
             const repoOwner = "camelDOUMTSOP"; 
-            const repoName = "wilau-bio-pro-site-fin";
-            const articleUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/content/blog/${fileName}?ref=main`;            async function loadArticle() {
+            const repoName = "wilau-bio-pro-site-CMS-now"; // ✅ Correction du dépôt ici
+            
+            // ✅ Utilisation de encodeURIComponent pour protéger les accents dans l'API GitHub
+            const articleUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/content/blog/${encodeURIComponent(fileName)}?ref=main`;
+
+            async function loadArticle() {
                 try {
                     const response = await fetch(articleUrl);
                     if (!response.ok) throw new Error("Article introuvable sur GitHub");
@@ -326,4 +330,4 @@ const repoName = "wilau-bio-pro-site-CMS-now";
         }
     }
 
-}); // 👈 Fermeture unique de DOMContentLoaded tout à la fin
+}); 
