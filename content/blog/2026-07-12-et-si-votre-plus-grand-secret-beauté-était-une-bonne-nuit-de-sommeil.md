@@ -1,7 +1,7 @@
 ---
 title: Et si votre plus grand secret beauté était... une bonne nuit de sommeil ?
 date: 2026-07-12T13:04:46.965Z
-image: /assets/images/blog/blog2.jpeg
+image: /assets/images/blog/blog2.webp
 description: Pendant que vous dormez, votre peau travaille pour vous ! Découvrez
   comment un sommeil de qualité répare votre visage et efface les signes de
   fatigue.

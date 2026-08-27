@@ -1,7 +1,7 @@
 ---
 title: Comment éliminer définitivement les points noirs et libérer vos pores ?
 date: 2026-06-20T16:43:09.956Z
-image: /assets/images/blog/point-noir-blog.jpeg
+image: /assets/images/blog/point-noir-blog.webp
 description: Marre des pores obstrués et des imperfections persistantes ?
   Découvrez comment un nettoyage ciblé et l'exfoliation douce peuvent
   métamorphoser l'éclat de votre visage.

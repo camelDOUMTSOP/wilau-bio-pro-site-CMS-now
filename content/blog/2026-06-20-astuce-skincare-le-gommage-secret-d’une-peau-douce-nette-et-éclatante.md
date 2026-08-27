@@ -1,7 +1,7 @@
 ---
 title: "Astuce Skincare : Le gommage, secret d’une peau douce, nette et éclatante"
 date: 2026-06-26T14:03:29.165Z
-image: /assets/images/blog/asctuce-beaute-lien.jpeg
+image: /assets/images/blog/asctuce-beaute-lien.webp
 description: Le gommage élimine les cellules mortes qui ternissent la peau,
   désobstrue les pores et favorise le renouvellement cellulaire. Découvrez
   comment bien l'intégrer à votre routine.

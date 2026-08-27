@@ -2,7 +2,7 @@
 title: "Routine capillaire : Comment sceller l’hydratation des cheveux crépus et
   bouclés ?"
 date: 2026-06-08T10:57:40.339Z
-image: /assets/images/blog/blog.jpeg
+image: /assets/images/blog/blog.webp
 description: Vos cheveux deviennent secs quelques heures seulement après les
   avoir hydratés ? Découvrez la méthode infaillible du scellage pour retenir
   l'eau et garder des boucles souples.

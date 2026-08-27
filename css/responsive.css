@@ -192,7 +192,8 @@ html, body {
 @media (max-width: 400px) {
     .product-card .img-wrapper, .premium-card .img-wrapper { padding: 4px; }
     .product-info h3 { font-size: 0.78rem !important; }
-}/* ==========================================================================
+
+    /* ==========================================================================
        SECTION TÉMOIGNAGES MOBILE (ALIGNE UN SEUL SMARTPHONE AU CENTRE)
        ========================================================================== */
     .testimonial-slider-container {
@@ -213,31 +214,35 @@ html, body {
         gap: 20px !important; /* On remet le gap de 20px pour correspondre au code JavaScript (+ 20) */
     }
 
-    .testimonial-slide { 
+    .testimonial-slide {
         width: 260px !important; /* Taille fixe et stricte par slide sur mobile */
         min-width: 260px !important;
         flex-shrink: 0 !important;
-        padding: 0 !important; 
+        padding: 0 !important;
     }
 
     .testimonial-slide img {
         width: 100% !important;
         height: 400px !important; /* Hauteur compacte et élégante */
-        object-fit: contain !important; 
+        object-fit: contain !important;
         border-radius: 16px !important;
         border: 2px solid var(--color-gold) !important;
     }
 
     /* Ajustement des flèches pour qu'elles restent à l'extérieur du téléphone */
-    .slider-arrow { 
-        width: 32px !important; 
-        height: 32px !important; 
+    .slider-arrow {
+        width: 32px !important;
+        height: 32px !important;
         font-size: 0.9rem !important;
     }
     .slider-arrow.prev { left: -45px !important; }
-    .slider-arrow.next { right: -45px !important; }/* ==========================================================================
-       FORCE LE ZOOM MAXIMUM DE L'IMAGE SUR MOBILE (Max 768px)
-       ========================================================================== */
+    .slider-arrow.next { right: -45px !important; }
+}
+
+/* ==========================================================================
+   FORCE LE ZOOM MAXIMUM DE L'IMAGE SUR MOBILE (Max 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
     .product-card .img-wrapper img,
     .premium-card .img-wrapper img,
     #products-grid .product-card .img-wrapper img,
@@ -255,7 +260,7 @@ html, body {
     .home-products .premium-card .img-wrapper {
         padding: 0px !important; /* Supprime tout espace blanc interne */
     }
-    @media (max-width: 768px) {
+
     /* Zoom renforcé Cheveux sur mobile */
     .product-card.cat-cheveux .img-wrapper img,
     .home-products .premium-card.cat-cheveux .img-wrapper img {

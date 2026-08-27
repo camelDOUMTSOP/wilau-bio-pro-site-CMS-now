@@ -1,7 +1,7 @@
 ---
 title: "Boutons et imperfections : Quand la nature simplifie votre routine beauté"
 date: 2026-06-22T10:43:14.563Z
-image: /assets/images/blog/no-bouton-arcticle.jpeg
+image: /assets/images/blog/no-bouton-arcticle.webp
 description: La tomate et le citron sont de formidables purifiants naturels.
   Mais pour vous faciliter la vie au quotidien, découvrez comment les lotions
   Green Moon et Pink Sun prennent le relais.

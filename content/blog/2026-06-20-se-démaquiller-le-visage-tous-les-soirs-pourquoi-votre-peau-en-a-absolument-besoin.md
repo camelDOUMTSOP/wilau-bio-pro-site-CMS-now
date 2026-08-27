@@ -2,7 +2,7 @@
 title: "Se démaquiller le visage tous les soirs : Pourquoi votre peau en a
   absolument besoin ?"
 date: 2026-06-24T13:06:15.495Z
-image: /assets/images/blog/autres-article.jpeg
+image: /assets/images/blog/autres-article.webp
 description: Votre peau travaille pendant la nuit, ne l'empêchez pas de respirer
   ! Découvrez pourquoi le démaquillage du soir est le secret indispensable pour
   éviter les imperfections et garder un teint éclatant.

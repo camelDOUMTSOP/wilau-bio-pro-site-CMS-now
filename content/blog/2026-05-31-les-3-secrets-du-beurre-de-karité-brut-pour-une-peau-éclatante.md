@@ -2,7 +2,7 @@
 layout: blog
 title: Les 3 secrets du beurre de Karité brut pour une peau éclatante
 date: 2026-05-31T17:33:00.000+01:00
-image: /assets/images/blog/wilau-img-9.jpg
+image: /assets/images/blog/wilau-img-9.webp
 description: Découvrez pourquoi le beurre de karité pur et non raffiné reste
   l'allié incontournable pour nourrir et protéger la peau face au climat
   tropical.

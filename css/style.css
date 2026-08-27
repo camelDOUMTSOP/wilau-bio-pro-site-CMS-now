@@ -7,6 +7,7 @@
     --color-cream: #fffaf5;
     --color-gold: #F39200;
     --color-gold-hover: #e08600;
+    --color-gold-deep: #A85D00; /* variante lisible du gold pour du texte sur fond clair (contraste AA) */
     --color-white: #ffffff;
     --color-accent: #D4AF37;
 
@@ -50,10 +51,15 @@ p { margin-bottom: 1.5rem; font-weight: 400; color: #4b5563; }
     letter-spacing: 2px;
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--color-gold);
+    color: var(--color-gold-deep);
 }
 
-.gold-text { color: var(--color-gold); }
+.gold-text { color: var(--color-gold-deep); }
+
+/* Sur fond sombre, le gold vif reste parfaitement lisible : on le restaure ici. */
+:is(.hero, .page-banner, .bg-dark, .footer, .footer-pro) :is(.gold-text, .accent-font, .product-price) {
+    color: var(--color-gold);
+}
 .text-light { color: var(--color-white); }
 .bg-dark { background-color: var(--color-dark); }
 .bg-cream { background-color: var(--color-cream); }
@@ -138,6 +144,8 @@ body:not(.bg-cream) .header:not(.scrolled) .logo, body:not(.bg-cream) .header:no
 .nav-menu ul { list-style: none; display: flex; gap: 2rem; }
 .nav-menu a { text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); font-weight: 600; }
 .nav-menu a:hover, .nav-menu a.active { color: var(--color-gold) !important; }
+/* Header en fond clair (scrollé) : gold plus profond pour rester lisible */
+.header.scrolled .nav-menu a:hover, .header.scrolled .nav-menu a.active { color: var(--color-gold-deep) !important; }
 
 .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 1001; }
 .hamburger span { display: block; width: 25px; height: 2px; background-color: var(--color-gold); transition: var(--transition); }
@@ -148,6 +156,7 @@ body:not(.bg-cream) .header:not(.scrolled) .logo, body:not(.bg-cream) .header:no
 .logo-wrapper { display: flex; align-items: center; gap: 12px; text-decoration: none; }
 .logo-text { display: flex; flex-direction: column; justify-content: center; }
 .logo-title { font-family: var(--font-body); font-weight: 700; font-size: 1.125rem; line-height: 1; color: var(--color-gold); }
+.header.scrolled .logo-title { color: var(--color-gold-deep); }
 .logo-subtitle { font-family: var(--font-body); font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b7280; font-weight: 600; margin-top: 3px; }
 
 /* ==========================================================================
@@ -237,11 +246,11 @@ body:not(.bg-cream) .header:not(.scrolled) .logo, body:not(.bg-cream) .header:no
     text-align: center;
 }
 
-.product-price { 
-    font-size: 1.2rem; 
-    font-weight: 700; 
-    color: var(--color-gold); 
-    margin: 0.2rem 0 0.8rem;      
+.product-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-gold-deep);
+    margin: 0.2rem 0 0.8rem;
 }
 
 .product-category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; display: block; margin-bottom: 0.5rem; }
@@ -315,7 +324,7 @@ body:not(.bg-cream) .header:not(.scrolled) .logo, body:not(.bg-cream) .header:no
     box-shadow: 0 4px 10px rgba(243, 146, 0, 0.3);
     z-index: 10;
 }
-.premium-card h3 { color: var(--color-gold); text-transform: uppercase; font-size: 1.5rem; margin: 1.5rem 0 0.5rem; letter-spacing: -0.5px; }
+.premium-card h3 { color: var(--color-gold-deep); text-transform: uppercase; font-size: 1.5rem; margin: 1.5rem 0 0.5rem; letter-spacing: -0.5px; }
 
 /* Correction Accueil PC : Calibrage propre des 2 cartes best-sellers */
 .home-products .premium-card {
@@ -343,79 +352,6 @@ body:not(.bg-cream) .header:not(.scrolled) .logo, body:not(.bg-cream) .header:no
     text-align: center;
     flex-grow: 1;
 }
-
-/* ==========================================================================
-   SECTION TEMOIGNAGES PC (RÉDUCTION DE LA ZONE NOIRE)
-   ========================================================================== */
-.testimonials {
-    padding: 4rem 0 !important; /* Resserre la section noire verticalement */
-}
-
-@media (min-width: 993px) {
-    .testimonials .container {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr; /* Texte à gauche, smartphone à droite */
-        align-items: center;
-        gap: 4rem;
-    }
-    .testimonials .section-header {
-        text-align: left;
-        margin-bottom: 0;
-    }
-}
-
-.testimonial-slider-container {
-    position: relative;
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-}
-.testimonial-slider {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-}
-.testimonial-track {
-    display: flex;
-    gap: 0px !important; /* Rapprochement parfait */
-    transition: transform 0.7s cubic-bezier(0.45, 0, 0.55, 1);
-    will-change: transform;
-}
-.testimonial-slide { width: 100%; flex-shrink: 0; }
-.testimonial-slide img {
-    width: 100%;
-    height: 480px !important;
-    object-fit: contain !important; /* Discussion entière sans découpe */
-    border-radius: 20px;
-    border: 3px solid var(--color-gold);
-    box-shadow: var(--shadow-strong);
-    pointer-events: none;
-}
-.slider-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(243, 146, 0, 0.9);
-    color: white;
-    border: none;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    font-size: 1.1rem;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-}
-.slider-arrow:hover { background: var(--color-gold); transform: translateY(-50%) scale(1.1); }
-.slider-arrow.prev { left: -45px; }
-.slider-arrow.next { right: -45px; }
 
 /* ==========================================================================
    AUTRES SECTIONS ET FORMULAIRES
@@ -459,6 +395,10 @@ body:not(.bg-cream) .header:not(.scrolled) .logo, body:not(.bg-cream) .header:no
 .newsletter-form button { padding: 12px 20px; border: none; border-radius: 0 5px 5px 0; background-color: var(--color-gold); color: #fff; cursor: pointer; }
 .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 1.5rem 0; background-color: #111; color: #6b7280; font-size: 0.8rem; text-align: center; }
 
+.site-credit { margin-top: 0.4rem; font-size: 0.78rem; opacity: 0.8; }
+.site-credit a { color: var(--color-gold); text-decoration: none; }
+.site-credit a:hover { text-decoration: underline; }
+
 .social-links { display: flex; justify-content: center; gap: 1.5rem; margin: 1.5rem 0; }
 .social-links a {
     color: var(--color-white);
@@ -501,8 +441,10 @@ body:not(.bg-cream) .header:not(.scrolled) .logo, body:not(.bg-cream) .header:no
 }
 
 .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-.reveal.active { opacity: 1; transform: translateY(0); }/* ==========================================================================
-   SECTION TEMOIGNAGES PC (RECADRAGE ET ALIGNEMENT PARFAIT)
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* ==========================================================================
+   SECTION TEMOIGNAGES PC
    ========================================================================== */
 .testimonials {
     padding: 4rem 0 !important; 

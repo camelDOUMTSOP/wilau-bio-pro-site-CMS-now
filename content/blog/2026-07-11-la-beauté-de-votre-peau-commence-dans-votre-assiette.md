@@ -1,7 +1,7 @@
 ---
 title: La beauté de votre peau commence dans votre assiette !
 date: 2026-07-11T22:42:46.829Z
-image: /assets/images/blog/blog.jpeg
+image: /assets/images/blog/blog.webp
 description: Une peau éclatante ne dépend pas uniquement des soins que vous
   appliquez… Elle reflète aussi ce que vous lui apportez de l'intérieur.
   Découvrez les secrets d'une alimentation pro-éclat.
