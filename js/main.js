@@ -35,45 +35,45 @@ document.addEventListener('DOMContentLoaded', () => {
     if (productsGrid) {
         const productsData = [
             // --- VISAGE (15 produits) ---
-            { id: 1,  image: "lait demaquillant lyly.webp", category: "visage", name: "Lait Démaquillant Lyly", desc: "Démaquillant doux à base de coco et amande douce. Adapté à tous types de peaux.", price: "7 500" },
-            { id: 2,  image: "18.webp", category: "visage", name: "Gel Trésor Exfoliant", desc: "Exfolie délicatement et désincruste les pores. Peaux mixtes, sensibles ou grasses.", price: "10 000" },
-            { id: 3,  image: "5.webp", category: "visage", name: "Gel Nettoyant Adou", desc: "Débarrasse la peau des impuretés et resserre les pores.", price: "10 000" },
-            { id: 4,  image: "12.webp", category: "visage corps", name: "Gommage Lyly", desc: "Exfoliation profonde visage et corps. Élimine les cellules mortes pour un teint neuf.", price: "7 500" },
-            { id: 5,  image: "2.webp", category: "visage", name: "Masque Argile Verte", desc: "L'allié incontournable pour maîtriser la peau acnéique et grasse.", price: "10 000" },
-            { id: 6,  image: "8.webp", category: "visage", name: "Masque Argile Blanche", desc: "Lifte la peau, apporte de l'éclat et serre les pores. Idéal peaux matures.", price: "10 000" },
-            { id: 7,  image: "14.webp", category: "visage", name: "Masque Argile Rouge", desc: "Soin nourrissant et coup d'éclat pour peaux sèches et mixtes.", price: "10 000" },
-            { id: 8,  image: "91.webp", category: "visage", name: "Masque Argile Rose", desc: "Contrôle l'acné juvénile. Parfait pour les peaux sensibles et réactives.", price: "10 000" },
-            { id: 9,  image: "7.webp", category: "visage", name: "Lotion Pink Sun", desc: "Éclaircissante anti-tache et acné. Lisse la peau claire.", price: "5 000" },
-            { id: 10, image: "9.webp", category: "visage", name: "Lotion Green Moon", desc: "Anti-tache et acné. Adaptée aux peaux noires et caramel.", price: "5 000" },
-            { id: 11, image: "31.webp", category: "visage serum", name: "Sérum Potion Magique", desc: "Concentré d'huiles et vitamines contre cernes, rougeurs et ridules (+28 ans).", price: "10 000" },
-            { id: 12, image: "13.webp", category: "visage", name: "Crème de visage Shine", desc: "Crème de jour révélateur d'éclat pour toutes les carnations naturelles.", price: "5 000" },
-            { id: 13, image: "16.webp", category: "visage", name: "Crème de visage Kimmy", desc: "Hydratante, nourrissante et clarifiante pour un teint caramel parfait.", price: "5 000" },
-            { id: 14, image: "11.webp", category: "visage", name: "Crème de visage Diva", desc: "Soin clarifiant et correcteur d'imperfections.", price: "7 500" },
-            { id: 15, image: "15.webp", category: "visage", name: "Crème de visage Diamond", desc: "Super éclaircissante, anti-âge au collagène et acide hyaluronique.", price: "7 500" },
+            { id: 1,  image: "lait-demaquillant-lyly-wilau-bio.webp", category: "visage", name: "Lait Démaquillant Lyly", desc: "Démaquillant doux à base de coco et amande douce. Adapté à tous types de peaux.", price: "7 500" },
+            { id: 2,  image: "gel-tresor-exfoliant-wilau-bio.webp", category: "visage", name: "Gel Trésor Exfoliant", desc: "Exfolie délicatement et désincruste les pores. Peaux mixtes, sensibles ou grasses.", price: "10 000" },
+            { id: 3,  image: "gel-nettoyant-adou-wilau-bio.webp", category: "visage", name: "Gel Nettoyant Adou", desc: "Débarrasse la peau des impuretés et resserre les pores.", price: "10 000" },
+            { id: 4,  image: "gommage-lyly-wilau-bio.webp", category: "visage corps", name: "Gommage Lyly", desc: "Exfoliation profonde visage et corps. Élimine les cellules mortes pour un teint neuf.", price: "7 500" },
+            { id: 5,  image: "masque-argile-verte-wilau-bio.webp", category: "visage", name: "Masque Argile Verte", desc: "L'allié incontournable pour maîtriser la peau acnéique et grasse.", price: "10 000" },
+            { id: 6,  image: "masque-argile-blanche-wilau-bio.webp", category: "visage", name: "Masque Argile Blanche", desc: "Lifte la peau, apporte de l'éclat et serre les pores. Idéal peaux matures.", price: "10 000" },
+            { id: 7,  image: "masque-argile-rouge-wilau-bio.webp", category: "visage", name: "Masque Argile Rouge", desc: "Soin nourrissant et coup d'éclat pour peaux sèches et mixtes.", price: "10 000" },
+            { id: 8,  image: "masque-argile-rose-wilau-bio.webp", category: "visage", name: "Masque Argile Rose", desc: "Contrôle l'acné juvénile. Parfait pour les peaux sensibles et réactives.", price: "10 000" },
+            { id: 9,  image: "lotion-pink-sun-wilau-bio.webp", category: "visage", name: "Lotion Pink Sun", desc: "Éclaircissante anti-tache et acné. Lisse la peau claire.", price: "5 000" },
+            { id: 10, image: "lotion-green-moon-wilau-bio.webp", category: "visage", name: "Lotion Green Moon", desc: "Anti-tache et acné. Adaptée aux peaux noires et caramel.", price: "5 000" },
+            { id: 11, image: "serum-potion-magique-wilau-bio.webp", category: "visage serum", name: "Sérum Potion Magique", desc: "Concentré d'huiles et vitamines contre cernes, rougeurs et ridules (+28 ans).", price: "10 000" },
+            { id: 12, image: "creme-visage-shine-wilau-bio.webp", category: "visage", name: "Crème de visage Shine", desc: "Crème de jour révélateur d'éclat pour toutes les carnations naturelles.", price: "5 000" },
+            { id: 13, image: "creme-visage-kimmy-wilau-bio.webp", category: "visage", name: "Crème de visage Kimmy", desc: "Hydratante, nourrissante et clarifiante pour un teint caramel parfait.", price: "5 000" },
+            { id: 14, image: "creme-visage-diva-wilau-bio.webp", category: "visage", name: "Crème de visage Diva", desc: "Soin clarifiant et correcteur d'imperfections.", price: "7 500" },
+            { id: 15, image: "creme-visage-diamond-wilau-bio.webp", category: "visage", name: "Crème de visage Diamond", desc: "Super éclaircissante, anti-âge au collagène et acide hyaluronique.", price: "7 500" },
 
             // --- CORPS (9 produits) ---
-            { id: 16, image: "20.webp", category: "corps", name: "Gel Douche Light", desc: "Clarifiant et gommant pour peaux lumineuses (Gammes Shine & Kimmy).", price: "7 500" },
-            { id: 17, image: "24.webp", category: "corps", name: "Gel Douche Glow", desc: "Super éclaircissant et gommant pour peau radieuse (Gammes Diva & Diamond).", price: "7 500" },
-            { id: 18, image: "23.webp", category: "corps", name: "Lait corps Shine", desc: "Révélateur d'éclat hydratant pour peaux ébène et carnations naturelles.", price: "10 000" },
-            { id: 19, image: "21.webp", category: "corps", name: "Lait corps Kimmy", desc: "Hydratant et nourrissant pour un teint caramel clarifié.", price: "12 500" },
-            { id: 20, image: "17.webp", category: "corps", name: "Lait Diva", desc: "Clarifiant pour un teint clair uniforme sans imperfections.", price: "15 000" },
-            { id: 21, image: "22.webp", category: "corps", name: "Lait Diamond", desc: "Super éclaircissant et hydratant pour un éclat métissé naturel.", price: "17 500" },
-            { id: 22, image: "radiance.webp", category: "corps serum", name: "Huile Radiance", desc: "Brillance assurée et protection de l'épiderme contre les agressions.", price: "10 000" },
-            { id: 23, image: "le secret de meme.webp", category: "corps", name: "Secret de Mémé", desc: "Crème raffermissante, tonifiante et galbante pour les seins (100% naturel).", price: "7 500" },
+            { id: 16, image: "gel-douche-light-wilau-bio.webp", category: "corps", name: "Gel Douche Light", desc: "Clarifiant et gommant pour peaux lumineuses (Gammes Shine & Kimmy).", price: "7 500" },
+            { id: 17, image: "gel-douche-glow-wilau-bio.webp", category: "corps", name: "Gel Douche Glow", desc: "Super éclaircissant et gommant pour peau radieuse (Gammes Diva & Diamond).", price: "7 500" },
+            { id: 18, image: "lait-corps-shine-wilau-bio.webp", category: "corps", name: "Lait corps Shine", desc: "Révélateur d'éclat hydratant pour peaux ébène et carnations naturelles.", price: "10 000" },
+            { id: 19, image: "lait-corps-kimmy-wilau-bio.webp", category: "corps", name: "Lait corps Kimmy", desc: "Hydratant et nourrissant pour un teint caramel clarifié.", price: "12 500" },
+            { id: 20, image: "lait-diva-wilau-bio.webp", category: "corps", name: "Lait Diva", desc: "Clarifiant pour un teint clair uniforme sans imperfections.", price: "15 000" },
+            { id: 21, image: "lait-diamond-wilau-bio.webp", category: "corps", name: "Lait Diamond", desc: "Super éclaircissant et hydratant pour un éclat métissé naturel.", price: "17 500" },
+            { id: 22, image: "huile-radiance-wilau-bio.webp", category: "corps serum", name: "Huile Radiance", desc: "Brillance assurée et protection de l'épiderme contre les agressions.", price: "10 000" },
+            { id: 23, image: "secret-de-meme-wilau-bio.webp", category: "corps", name: "Secret de Mémé", desc: "Crème raffermissante, tonifiante et galbante pour les seins (100% naturel).", price: "7 500" },
 
             // --- CHEVEUX (5 produits) ---
-            { id: 24, image: "ChampooingAntipeliculaireFaithy.webp", category: "cheveux", name: "Shampooing Faithy", desc: "Antipelliculaire. Lave et assainit le cuir chevelu en profondeur.", price: "7 500" },
-            { id: 25, image: "ApresChampooingFaity.webp", category: "cheveux", name: "Leave-in conditioner", desc: "Démêle et protège les cheveux contre la chaleur du séchoir.", price: "7 500" },
-            { id: 26, image: "TraitementFaithy.webp", category: "cheveux", name: "Traitement Faithy", desc: "Aux plantes et beurres végétaux. Stimule la pousse et stop la casse.", price: "7 500" },
-            { id: 27, image: "CremeCapilaireFaithy.webp", category: "cheveux", name: "Huile Faithy", desc: "Nourrissante, protectrice et activatrice de pousse.", price: "7 500" },
-            { id: 28, image: "SeruimActivepousseFaityM.webp", category: "cheveux", name: "Sérum Active Pousse", desc: "Stimule la croissance des cheveux et de la barbe.", price: "10 000" },
+            { id: 24, image: "shampooing-faithy-wilau-bio.webp", category: "cheveux", name: "Shampooing Faithy", desc: "Antipelliculaire. Lave et assainit le cuir chevelu en profondeur.", price: "7 500" },
+            { id: 25, image: "leave-in-conditioner-faithy-wilau-bio.webp", category: "cheveux", name: "Leave-in conditioner", desc: "Démêle et protège les cheveux contre la chaleur du séchoir.", price: "7 500" },
+            { id: 26, image: "traitement-faithy-wilau-bio.webp", category: "cheveux", name: "Traitement Faithy", desc: "Aux plantes et beurres végétaux. Stimule la pousse et stop la casse.", price: "7 500" },
+            { id: 27, image: "huile-faithy-wilau-bio.webp", category: "cheveux", name: "Huile Faithy", desc: "Nourrissante, protectrice et activatrice de pousse.", price: "7 500" },
+            { id: 28, image: "serum-active-pousse-faithy-wilau-bio.webp", category: "cheveux", name: "Sérum Active Pousse", desc: "Stimule la croissance des cheveux et de la barbe.", price: "10 000" },
 
             // --- PACKS (5 nouveaux packs) ---
-            { id: 29, image: "gamme shine.webp", category: "pack", name: "Pack Shine", desc: "Routine complète pour révéler l'éclat des peaux naturelles.", price: "22 500" },
-            { id: 30, image: "gamme kymy.webp", category: "pack", name: "Pack Kimmy", desc: "Le secret du teint caramel parfait en un coffret.", price: "25 000" },
-            { id: 31, image: "gamme diva.webp", category: "pack", name: "Pack Diva", desc: "Routine clarifiante intégrale pour un visage et corps sans taches.", price: "30 000" },
-            { id: 32, image: "gamme diamond.webp", category: "pack", name: "Pack Diamond", desc: "Luxe suprême pour un éclaircissement intense et anti-âge.", price: "32 500" },
-            { id: 33, image: "GammeFaithyM.webp", category: "pack", name: "Pack Faithy", desc: "Gamme capillaire complète pour la force et la pousse.", price: "30 000" }
+            { id: 29, image: "pack-shine-wilau-bio.webp", category: "pack", name: "Pack Shine", desc: "Routine complète pour révéler l'éclat des peaux naturelles.", price: "22 500" },
+            { id: 30, image: "pack-kimmy-wilau-bio.webp", category: "pack", name: "Pack Kimmy", desc: "Le secret du teint caramel parfait en un coffret.", price: "25 000" },
+            { id: 31, image: "pack-diva-wilau-bio.webp", category: "pack", name: "Pack Diva", desc: "Routine clarifiante intégrale pour un visage et corps sans taches.", price: "30 000" },
+            { id: 32, image: "pack-diamond-wilau-bio.webp", category: "pack", name: "Pack Diamond", desc: "Luxe suprême pour un éclaircissement intense et anti-âge.", price: "32 500" },
+            { id: 33, image: "pack-faithy-wilau-bio.webp", category: "pack", name: "Pack Faithy", desc: "Gamme capillaire complète pour la force et la pousse.", price: "30 000" }
         ];
 
         function displayProducts(filter = "all") {
