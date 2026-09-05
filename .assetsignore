@@ -13,3 +13,6 @@ wrangler.jsonc
 .assetsignore
 converts.js
 README.md/**
+CLAUDE.md
+journal-seo-wilaubio.md
+.gitignore

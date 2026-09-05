@@ -56,6 +56,15 @@ Corrigé en régénérant les 3 fichiers `.webp` concernés directement depuis l
 
 **Reste à faire** : vérifier pourquoi le jeton de build Cloudflare porte le nom d'un autre projet ("le-site-de-dr-fouenang-propre-sans-cms") et s'assurer qu'un futur `git push` redéclenche bien un build automatique réussi (pas encore testé après la reconnexion).
 
+## 2026-09-05 — Nouvel article + balisage complet + fix indexation Search Console
+
+- Nouvel article de blog : "Comment traiter naturellement les taches brunes et unifier son teint" (image `wilau img 4.webp`, produit mis en avant : Lotion Green Moon).
+- Balises meta/canonical/OG ajoutées sur les 3 pages d'articles statiques restantes.
+- `js/main.js` pose désormais dynamiquement description/canonical/OG sur chaque article du CMS (title déjà fait précédemment).
+- **Google Search Console était déjà configuré** (propriété de domaine `sc-domain:wilaubio.com`) — découverte en cours de session. Diagnostic : 4 pages indexées / 6 non indexées, dont 5 classées "Page avec redirection".
+- **Cause trouvée** : le sitemap et les balises canonical pointaient vers les URLs en `.html`, alors que Cloudflare redirige automatiquement (307) ces URLs vers leur équivalent sans extension (`html_handling` par défaut = `auto-trailing-slash`). Corrigé : canonical, og:url et sitemap.xml pointent maintenant vers l'URL finale sans `.html`. Vérifié : les URLs sans extension renvoient bien 200 directement.
+- Reste à faire côté utilisateur : redemander l'indexation des pages concernées dans Search Console (Inspection de l'URL → Demander une indexation).
+
 ## Constat non résolu — à traiter par retouche photo (hors code)
 
 Les photos produits ont un cadrage très inégal (certaines remplissent toute la vignette, d'autres flottent minuscules dans un grand cadre blanc). Le CSS ne peut pas corriger ça proprement pour 33 produits différents — nécessite un recadrage des photos sources.
