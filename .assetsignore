@@ -1,0 +1,15 @@
+.git
+.git/**
+.wrangler
+.wrangler/**
+.claude
+.claude/**
+node_modules
+node_modules/**
+package.json
+package-lock.json
+netlify.toml
+wrangler.jsonc
+.assetsignore
+converts.js
+README.md/**

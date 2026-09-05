@@ -338,6 +338,7 @@ const repoName = "wilau-bio-pro-site-CMS-now";
                 const matches = rawText.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*([\s\S]*)$/);
                 let title = "Article";
                 let image = "";
+                let description = "";
                 let bodyHtml = rawText;
 
                 if (matches) {
@@ -351,6 +352,7 @@ const repoName = "wilau-bio-pro-site-CMS-now";
                             const val = parts.slice(1).join(':').trim().replace(/^["']|["']$/g, '');
                             if (key === 'title') title = val;
                             if (key === 'image') image = val;
+                            if (key === 'description') description = val;
                         }
                     });
                 } else {
@@ -358,6 +360,37 @@ const repoName = "wilau-bio-pro-site-CMS-now";
                 }
 
                 if (title !== "Article") document.title = `${title} | Wilau Bio`;
+
+                // Balises SEO posées dynamiquement (titre, description, canonical, Open Graph)
+                // à partir des données de l'article, pour que chaque article du blog soit
+                // correctement balisé sans avoir à créer une page HTML par article.
+                function setMetaTag(selector, attrs) {
+                    let el = document.querySelector(selector);
+                    if (!el) {
+                        el = document.createElement(attrs.tag === 'link' ? 'link' : 'meta');
+                        document.head.appendChild(el);
+                    }
+                    Object.keys(attrs).forEach(key => {
+                        if (key !== 'tag') el.setAttribute(key, attrs[key]);
+                    });
+                }
+
+                const articleFullUrl = `https://wilaubio.com/article.html?file=${encodeURIComponent(fileName)}`;
+                const articleImageUrl = image
+                    ? (image.startsWith('http') ? image : `https://wilaubio.com/${image.replace(/^\//, '')}`)
+                    : 'https://wilaubio.com/assets/images/wilau img 8.webp';
+
+                if (description) {
+                    setMetaTag('meta[name="description"]', { tag: 'meta', name: 'description', content: description });
+                }
+                setMetaTag('link[rel="canonical"]', { tag: 'link', rel: 'canonical', href: articleFullUrl });
+                setMetaTag('meta[property="og:type"]', { tag: 'meta', property: 'og:type', content: 'article' });
+                setMetaTag('meta[property="og:url"]', { tag: 'meta', property: 'og:url', content: articleFullUrl });
+                setMetaTag('meta[property="og:title"]', { tag: 'meta', property: 'og:title', content: `${title} | Wilau Bio` });
+                if (description) {
+                    setMetaTag('meta[property="og:description"]', { tag: 'meta', property: 'og:description', content: description });
+                }
+                setMetaTag('meta[property="og:image"]', { tag: 'meta', property: 'og:image', content: articleImageUrl });
 
                 // Markdown basique vers HTML
                 let cleanBody = bodyHtml

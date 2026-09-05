@@ -41,6 +41,21 @@ Signalé par l'utilisateur : les photos de "Gel Trésor Exfoliant", "Masque Argi
 
 Corrigé en régénérant les 3 fichiers `.webp` concernés directement depuis leur source `.jpg` d'origine, toujours présente sur disque. Vérifié en direct (dimensions naturelles de l'image chargée, correspondant à la source jpg). Le fichier `19.jpg`/`19.png` a le même doublon mais n'est utilisé nulle part dans le catalogue — laissé tel quel.
 
+## 2026-09-02 — Déploiement en panne depuis 20 jours, réparé + déploiement manuel + incident de sécurité corrigé
+
+**Découverte** : aucun des push effectués depuis le début du projet n'était réellement en ligne. `wilaubio` est un **Cloudflare Worker** (pas un projet "Pages" classique malgré ce que suggérait la doc), relié à `camelDOUMTSOP/wilau-bio-pro-site-CMS-now` via la fonctionnalité "Workers Builds" (déploiement = `npx wrangler deploy`). La connexion Git était déconnectée côté Cloudflare, et le dépôt n'avait aucun fichier `wrangler.jsonc` — or `wrangler deploy` exige un fichier de config avec un `name` correspondant au nom du Worker dans le dashboard, donc même une fois la connexion réparée, le build échouait.
+
+**Corrections** :
+- Création de `wrangler.jsonc` (name: `wilaubio`, assets servis depuis la racine du dépôt).
+- L'utilisateur a reconnecté le dépôt Git côté dashboard (bouton "Gérer" dans Paramètres → Build).
+- Déploiement manuel effectué directement depuis le poste local via `wrangler login` + `wrangler deploy`, le temps de fiabiliser le pipeline automatique (un jeton de build au nom d'un autre projet client restait à vérifier — statut à confirmer).
+
+**Incident de sécurité découvert et corrigé dans la foulée** : le premier déploiement manuel a exposé **tout le dossier `.git`** (historique complet du dépôt, y compris les objets git) comme fichiers publics sur le site — `wilaubio.com/.git/config` était accessible. Corrigé en ajoutant un fichier `.assetsignore` à la racine (exclut `.git`, `.wrangler`, `.claude`, `node_modules`, `package.json`, `wrangler.jsonc`, `netlify.toml`). Vérifié après redéploiement : `.git/config` et `.git/HEAD` renvoient bien 404.
+
+**Piste explorée et abandonnée** : `html_handling: "none"` dans `wrangler.jsonc` pour éviter que `/page.html` redirige (307) vers `/page` — a cassé l'accès à la racine `wilaubio.com/` (404). Retiré immédiatement ; le comportement par défaut (redirection `.html` → sans extension) est conservé, ce n'est pas une régression par rapport à avant.
+
+**Reste à faire** : vérifier pourquoi le jeton de build Cloudflare porte le nom d'un autre projet ("le-site-de-dr-fouenang-propre-sans-cms") et s'assurer qu'un futur `git push` redéclenche bien un build automatique réussi (pas encore testé après la reconnexion).
+
 ## Constat non résolu — à traiter par retouche photo (hors code)
 
 Les photos produits ont un cadrage très inégal (certaines remplissent toute la vignette, d'autres flottent minuscules dans un grand cadre blanc). Le CSS ne peut pas corriger ça proprement pour 33 produits différents — nécessite un recadrage des photos sources.
