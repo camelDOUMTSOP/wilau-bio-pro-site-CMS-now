@@ -375,7 +375,7 @@ const repoName = "wilau-bio-pro-site-CMS-now";
                     });
                 }
 
-                const articleFullUrl = `https://wilaubio.com/article.html?file=${encodeURIComponent(fileName)}`;
+                const articleFullUrl = `https://wilaubio.com/article?file=${encodeURIComponent(fileName)}`;
                 const articleImageUrl = image
                     ? (image.startsWith('http') ? image : `https://wilaubio.com/${image.replace(/^\//, '')}`)
                     : 'https://wilaubio.com/assets/images/wilau img 8.webp';

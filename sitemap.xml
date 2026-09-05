@@ -6,37 +6,37 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://wilaubio.com/produits-services.html</loc>
+    <loc>https://wilaubio.com/produits-services</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://wilaubio.com/a-propos-contact.html</loc>
+    <loc>https://wilaubio.com/a-propos-contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://wilaubio.com/blog.html</loc>
+    <loc>https://wilaubio.com/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://wilaubio.com/article-hydratation.html</loc>
+    <loc>https://wilaubio.com/article-hydratation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://wilaubio.com/article-cacao.html</loc>
+    <loc>https://wilaubio.com/article-cacao</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://wilaubio.com/article-exfoliation.html</loc>
+    <loc>https://wilaubio.com/article-exfoliation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://wilaubio.com/article.html?file=2026-09-05-comment-traiter-naturellement-les-taches-brunes-et-unifier-son-teint.md</loc>
+    <loc>https://wilaubio.com/article?file=2026-09-05-comment-traiter-naturellement-les-taches-brunes-et-unifier-son-teint.md</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
