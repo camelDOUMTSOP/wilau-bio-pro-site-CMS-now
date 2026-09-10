@@ -2,6 +2,14 @@
 
 Historique des actions menées dans le cadre de l'objectif : 10 nouveaux clients en 3 mois (01/09/2026 → 01/12/2026). Contexte permanent du projet : voir [CLAUDE.md](CLAUDE.md).
 
+## 2026-09-10 — Google Business Profile en ligne + 2 nouveaux articles
+
+- **Google Business Profile vérifié et publié** : fiche "WiLAU BIO" à Yaoundé (Titi Garage), catégorie Institut de beauté, zone desservie Douala + Yaoundé, horaires tous les jours 08:00-20:00. Lien d'avis : `https://g.page/r/CXY28l3MMXA4EAI/review`.
+- Message de sollicitation d'avis rédigé pour la cliente (sans demande explicite de note, conforme aux règles Google contre le "review gating").
+- Photo de couverture recommandée : `assets/images/wilau site 9.webp` (photo hero de l'accueil, trois clientes + gamme produits, déjà utilisée sur le site — cohérence visuelle site/fiche).
+- Nouvel article : *"Comment stimuler la pousse des cheveux afro ?"* (2026-09-10), image `pack-faithy-wilau-bio.webp`, renvoie vers le Sérum Active Pousse Faithy.
+- Sitemap mis à jour avec les 2 nouveaux articles CMS.
+
 ## 2026-08-27 — Audit initial + corrections Mois 1 (technique)
 
 **Diagnostic** : le site n'était quasiment pas indexé par Google (`site:wilaubio.com` ne remontait rien). Causes principales : balises SEO incomplètes hors accueil, blog/boutique générés en JavaScript sans contenu statique de secours, ~20,5 Mo d'images non compressées, aucune fiche Google Business Profile.
