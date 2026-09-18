@@ -256,18 +256,28 @@ const repoName = "wilau-bio-pro-site-CMS-now";
                 const mdFiles = files.filter(file => file.name.endsWith('.md'));
 
                 if (mdFiles.length > 0) {
+                    const now = Date.now();
                     const articles = [];
                     for (const file of mdFiles) {
                         const fileResponse = await fetch(file.download_url);
                         const rawText = await fileResponse.text();
                         const parsedData = parseMarkdownFrontmatter(rawText);
+
+                        // Publication programmée : un article dont la date est dans le
+                        // futur reste dans le CMS mais n'apparaît pas encore sur le blog.
+                        const publishTime = parsedData.date ? Date.parse(parsedData.date) : NaN;
+                        if (!isNaN(publishTime) && publishTime > now) continue;
+
                         articles.push({
                             title: parsedData.title,
                             description: parsedData.description || '',
                             image: parsedData.image || '',
-                            fileName: file.name
+                            fileName: file.name,
+                            date: parsedData.date || ''
                         });
                     }
+                    // Les plus récents d'abord.
+                    articles.sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0));
                     renderArticles(articles);
                     writeCache(BLOG_CACHE_KEY, articles);
                 }
@@ -339,6 +349,7 @@ const repoName = "wilau-bio-pro-site-CMS-now";
                 let title = "Article";
                 let image = "";
                 let description = "";
+                let publishDate = "";
                 let bodyHtml = rawText;
 
                 if (matches) {
@@ -353,10 +364,19 @@ const repoName = "wilau-bio-pro-site-CMS-now";
                             if (key === 'title') title = val;
                             if (key === 'image') image = val;
                             if (key === 'description') description = val;
+                            if (key === 'date') publishDate = val;
                         }
                     });
                 } else {
                     bodyHtml = rawText.replace(/^---[\s\S]*?---/, '');
+                }
+
+                // Publication programmée : un lien direct vers un article dont la date
+                // est dans le futur ne doit pas dévoiler le contenu en avance.
+                const publishTime = publishDate ? Date.parse(publishDate) : NaN;
+                if (!isNaN(publishTime) && publishTime > Date.now()) {
+                    articleContent.innerHTML = "<p class='center'>Cet article n'est pas encore publié. <a href='blog.html'>Retourner au blog</a>.</p>";
+                    return;
                 }
 
                 if (title !== "Article") document.title = `${title} | Wilau Bio`;
