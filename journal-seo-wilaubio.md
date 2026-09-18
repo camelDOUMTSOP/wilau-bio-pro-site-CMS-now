@@ -2,6 +2,10 @@
 
 Historique des actions menées dans le cadre de l'objectif : 10 nouveaux clients en 3 mois (01/09/2026 → 01/12/2026). Contexte permanent du projet : voir [CLAUDE.md](CLAUDE.md).
 
+## 2026-09-18 — Publication programmée du blog
+
+`js/main.js` filtre désormais les articles dont le champ `date:` du frontmatter est dans le futur : ils restent dans `content/blog/` (donc visibles/éditables dans le CMS) mais n'apparaissent sur `blog.html` qu'une fois leur date atteinte, et un accès direct par lien à un article non encore publié affiche un message d'attente au lieu du contenu. La liste est aussi désormais triée du plus récent au plus ancien. Permet d'écrire plusieurs articles à l'avance et de les dater pour un rythme de publication régulier sans intervention manuelle à chaque fois. Testé en conditions réelles avec un article factice daté de 2099 (confirmé absent de la liste), puis retiré.
+
 ## 2026-09-10 — Google Business Profile en ligne + 2 nouveaux articles
 
 - **Google Business Profile vérifié et publié** : fiche "WiLAU BIO" à Yaoundé (Titi Garage), catégorie Institut de beauté, zone desservie Douala + Yaoundé, horaires tous les jours 08:00-20:00. Lien d'avis : `https://g.page/r/CXY28l3MMXA4EAI/review`.
