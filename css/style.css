@@ -395,6 +395,11 @@ body:not(.bg-cream) .header:not(.scrolled) .logo, body:not(.bg-cream) .header:no
 .newsletter-form button { padding: 12px 20px; border: none; border-radius: 0 5px 5px 0; background-color: var(--color-gold); color: #fff; cursor: pointer; }
 .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 1.5rem 0; background-color: #111; color: #6b7280; font-size: 0.8rem; text-align: center; }
 
+.product-category-section { margin-top: 3.5rem; }
+.product-category-section:first-child { margin-top: 0; }
+.product-category-title { font-size: 1.8rem; margin-bottom: 0.5rem; }
+.product-category-intro { color: #6b7280; max-width: 640px; margin: 0 auto 1rem; }
+
 .site-credit { margin-top: 0.4rem; font-size: 0.78rem; opacity: 0.8; }
 .site-credit a { color: var(--color-gold); text-decoration: none; }
 .site-credit a:hover { text-decoration: underline; }

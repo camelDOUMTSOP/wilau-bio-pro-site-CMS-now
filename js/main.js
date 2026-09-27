@@ -76,19 +76,20 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 33, image: "pack-faithy-wilau-bio.webp", category: "pack", name: "Pack Faithy", desc: "Gamme capillaire complète pour la force et la pousse.", price: "30 000" }
         ];
 
-        function displayProducts(filter = "all") {
-            productsGrid.innerHTML = "";
-            const filtered = (filter === "all") 
-                ? productsData 
-                : productsData.filter(p => p.category.split(' ').includes(filter));
+        const labelMap = { visage: "Visage", corps: "Corps", cheveux: "Cheveux", pack: "Packs" };
+        const categoryIntros = {
+            visage: "Sérums, crèmes et masques pour cibler taches, imperfections et signes de l'âge sur les peaux noires et métissées.",
+            corps: "Laits et gels douche éclaircissants et hydratants pour un teint uniforme, du visage au corps.",
+            cheveux: "La gamme Faithy pour fortifier, nourrir et stimuler la pousse des cheveux crépus, frisés et bouclés.",
+            pack: "Des routines complètes, pensées pour accompagner une problématique précise du début à la fin."
+        };
+        const categoryOrder = ["visage", "corps", "cheveux", "pack"];
 
-            filtered.forEach(p => {
-            const labelMap = { visage: "Visage", corps: "Corps", cheveux: "Cheveux", pack: "Pack" };
+        function buildProductCard(p) {
             const categoryLabel = labelMap[p.category.split(' ')[0]] || p.category.split(' ')[0];
-
-            const card = document.createElement('div');
             const catClass = "cat-" + p.category.split(' ')[0];
-card.className = `product-card reveal active ${catClass}`;
+            const card = document.createElement('div');
+            card.className = `product-card reveal active ${catClass}`;
             card.innerHTML = `
                 <div class="img-wrapper">
                     <img src="assets/images/${p.image}" alt="${p.name}" loading="lazy">
@@ -96,17 +97,81 @@ card.className = `product-card reveal active ${catClass}`;
                 <div class="product-info">
                     <span class="product-category">${categoryLabel}</span>
                     <h3>${p.name}</h3>
-                    
+
                     <p class="product-description">${p.desc}</p>
-                    
+
                     <div class="product-price">${p.price === 'Promo' ? '<span style="color:var(--color-gold);">Offre Spéciale</span>' : p.price + ' FCFA'}</div>
-                    
-                    <a href="https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20j'ai%20d%C3%A9couvert%20votre%20boutique%20en%20ligne%20et%20je%20souhaiterais%20commander%20le%20produit%20suivant%20%3A%20*${encodeURIComponent(p.name)}*.%20Est-il%20disponible%20%3F" 
-                       class="btn btn-primary small" 
+
+                    <a href="https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20j'ai%20d%C3%A9couvert%20votre%20boutique%20en%20ligne%20et%20je%20souhaiterais%20commander%20le%20produit%20suivant%20%3A%20*${encodeURIComponent(p.name)}*.%20Est-il%20disponible%20%3F"
+                       class="btn btn-primary small"
                        target="_blank">Commander</a>
                 </div>`;
-            productsGrid.appendChild(card);
-        });
+            return card;
+        }
+
+        // Sections par catégorie (Visage / Corps / Cheveux / Packs) avec un vrai titre
+        // H2 et un court texte d'intro par catégorie, pour donner à Google (et aux
+        // visiteurs) une structure sémantique claire plutôt qu'une grille indifférenciée.
+        function renderCategorySection(cat, items) {
+            const section = document.createElement('div');
+            section.className = `product-category-section cat-section-${cat}`;
+            section.innerHTML = `
+                <h2 class="product-category-title gold-text center">${labelMap[cat] || cat}</h2>
+                ${categoryIntros[cat] ? `<p class="product-category-intro center">${categoryIntros[cat]}</p>` : ''}
+                <div class="grid-4 mt-2 product-category-grid"></div>
+            `;
+            const grid = section.querySelector('.product-category-grid');
+            items.forEach(p => grid.appendChild(buildProductCard(p)));
+            productsGrid.appendChild(section);
+        }
+
+        function displayProducts(filter = "all") {
+            productsGrid.innerHTML = "";
+            if (filter === "all") {
+                categoryOrder.forEach(cat => {
+                    const items = productsData.filter(p => p.category.split(' ')[0] === cat);
+                    if (items.length > 0) renderCategorySection(cat, items);
+                });
+            } else {
+                const items = productsData.filter(p => p.category.split(' ').includes(filter));
+                if (items.length > 0) renderCategorySection(filter, items);
+            }
+        }
+
+        // Données structurées Produit (Schema.org) : générées une seule fois à partir
+        // du catalogue complet, indépendamment du filtre visuel actuellement affiché.
+        function injectProductSchema() {
+            const itemListElement = productsData.map((p, i) => {
+                const categoryLabel = labelMap[p.category.split(' ')[0]] || p.category.split(' ')[0];
+                const priceNumber = parseFloat(String(p.price).replace(/\s/g, ''));
+                const item = {
+                    "@type": "Product",
+                    "name": p.name,
+                    "description": p.desc,
+                    "image": `https://wilaubio.com/assets/images/${p.image}`,
+                    "category": categoryLabel,
+                    "brand": { "@type": "Brand", "name": "WiLAU BIO" }
+                };
+                if (!isNaN(priceNumber)) {
+                    item.offers = {
+                        "@type": "Offer",
+                        "price": priceNumber,
+                        "priceCurrency": "XAF",
+                        "availability": "https://schema.org/InStock",
+                        "url": "https://wilaubio.com/produits-services"
+                    };
+                }
+                return { "@type": "ListItem", "position": i + 1, "item": item };
+            });
+            const schema = {
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "itemListElement": itemListElement
+            };
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify(schema);
+            document.head.appendChild(script);
         }
 
         // Activation des filtres
@@ -119,6 +184,7 @@ card.className = `product-card reveal active ${catClass}`;
         });
 
         displayProducts("all");
+        injectProductSchema();
     }
     
     // PARTIE TEMOIGNAGES
