@@ -2,6 +2,10 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "wilaubio",
   "compatibility_date": "2026-09-02",
+  // Régénère fiches produits, articles et sitemap à partir de content/ avant chaque mise en ligne.
+  "build": {
+    "command": "node scripts/build.mjs"
+  },
   "assets": {
     "directory": "./",
     "not_found_handling": "404-page"

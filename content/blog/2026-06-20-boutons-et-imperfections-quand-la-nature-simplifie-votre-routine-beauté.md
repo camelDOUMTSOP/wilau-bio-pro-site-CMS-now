@@ -14,8 +14,8 @@ Cependant, nous savons que préparer des recettes maison chaque semaine demande 
 
 Pour s'adapter précisément à votre type de peau, notre gamme se décline en deux rituels de douceur :
 
-* **Lotion Green Moon :** Idéale pour les peaux noires et métissées sujettes aux imperfections, elle cible les boutons et aide à estomper les taches pour unifier le teint.
-* **Lotion Pink Sun :** Parfaite pour les peaux claires à tendance acnéique, elle aide à assainir la peau en profondeur tout en lui redonnant toute sa luminosité.
+* **[Lotion Green Moon](https://wilaubio.com/produits/lotion-green-moon) :** Idéale pour les peaux noires et métissées sujettes aux imperfections, elle cible les boutons et aide à estomper les taches pour unifier le teint.
+* **[Lotion Pink Sun](https://wilaubio.com/produits/lotion-pink-sun) :** Parfaite pour les peaux claires à tendance acnéique, elle aide à assainir la peau en profondeur tout en lui redonnant toute sa luminosité.
 
 Ces deux lotions sont de véritables alliées au quotidien pour lutter efficacement contre l'acné et retrouver une peau plus nette, jour après jour. Pourquoi se compliquer la vie quand votre solution est déjà prête à vous accompagner ?
 

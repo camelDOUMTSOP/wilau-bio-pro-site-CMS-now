@@ -31,4 +31,4 @@ Contrairement aux gommages à gros grains qui créent des micro-lésions sur le 
 
 Ne laissez plus les imperfections masquer l'éclat naturel de votre visage. Pour offrir à votre peau le traitement purifiant et lissant qu'elle mérite, découvrez notre soin emblématique : le **Gel Nettoyant Exfoliant Trésor**. Conçu pour nettoyer intensément tout en respectant l'équilibre délicat de votre peau, il vous garantit un visage plus net, plus lisse et éclatant dès les premières semaines.
 
-👉 **[Découvrir le Gel Nettoyant Exfoliant Trésor — WiLAU Bio](https://wilaubio.com/produits-services)**
+👉 **[Découvrir le Gel Nettoyant Exfoliant Trésor — WiLAU Bio](https://wilaubio.com/produits/gel-tresor-exfoliant)**

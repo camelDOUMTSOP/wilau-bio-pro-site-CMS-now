@@ -33,6 +33,6 @@ Plus une peau contient de mélanocytes actifs, plus sa réponse à une agression
 
 ### 🌿 La gamme Diva, pensée pour l'uniformité du teint
 
-Notre **Crème de Visage Diva** (soin clarifiant et correcteur d'imperfections) et notre **Lait Corps Diva** (clarifiant pour un teint clair et uniforme) sont formulés pour accompagner ce travail de fond, visage et corps, sur la durée.
+Notre **[Crème de Visage Diva](https://wilaubio.com/produits/creme-visage-diva)** (soin clarifiant et correcteur d'imperfections) et notre **[Lait Corps Diva](https://wilaubio.com/produits/lait-corps-diva)** (clarifiant pour un teint clair et uniforme) sont formulés pour accompagner ce travail de fond, visage et corps, sur la durée.
 
-👉 **[Découvrir la gamme Diva — WiLAU Bio](https://wilaubio.com/produits-services)**
+👉 **[Découvrir la gamme Diva — WiLAU Bio](https://wilaubio.com/produits/pack-diva)**

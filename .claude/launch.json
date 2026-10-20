@@ -6,6 +6,13 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8791"],
       "port": 8791
+    },
+    {
+      "name": "wilau-bio-local",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/serve.mjs"],
+      "port": 8792,
+      "env": { "PORT": "8792" }
     }
   ]
 }

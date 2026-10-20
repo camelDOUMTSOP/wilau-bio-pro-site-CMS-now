@@ -32,4 +32,4 @@ Une routine pensée pour une peau jeune ne répond pas aux mêmes besoins. Une p
 
 Enrichi au collagène, à l'huile végétale d'onagre et à l'huile essentielle de carotte, notre **Masque à l'Argile Blanche** lifte la peau, resserre les pores et redonne de l'éclat — spécifiquement formulé pour accompagner les peaux matures et ternes.
 
-👉 **[Découvrir le Masque à l'Argile Blanche — WiLAU Bio](https://wilaubio.com/produits-services)**
+👉 **[Découvrir le Masque à l'Argile Blanche — WiLAU Bio](https://wilaubio.com/produits/masque-argile-blanche)**

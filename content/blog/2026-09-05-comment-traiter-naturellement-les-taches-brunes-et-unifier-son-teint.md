@@ -33,4 +33,4 @@ Un teint plus uniforme se construit avec de la régularité, pas avec de l'agres
 
 Pour accompagner cette routine, découvrez notre **Lotion Green Moon**, formulée pour cibler les taches et les traces d'acné tout en respectant l'équilibre des peaux noires et caramel. Utilisée régulièrement, elle aide à retrouver un teint plus net et plus lumineux.
 
-👉 **[Découvrir la Lotion Green Moon — WiLAU Bio](https://wilaubio.com/produits-services)**
+👉 **[Découvrir la Lotion Green Moon — WiLAU Bio](https://wilaubio.com/produits/lotion-green-moon)**

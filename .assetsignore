@@ -16,3 +16,8 @@ README.md/**
 CLAUDE.md
 journal-seo-wilaubio.md
 .gitignore
+scripts
+scripts/**
+content
+content/**
+GUIDE-TELEPHONE.md

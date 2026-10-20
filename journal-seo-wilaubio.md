@@ -2,6 +2,25 @@
 
 Historique des actions menées dans le cadre de l'objectif : 10 nouveaux clients en 3 mois (01/09/2026 → 01/12/2026). Contexte permanent du projet : voir [CLAUDE.md](CLAUDE.md).
 
+## 2026-10-20 — Fiches produits, blog statique, CMS réparé (reprise du projet sur un nouveau poste)
+
+Contexte : reprise du projet sur un autre PC, avant un passage à un travail 100 % téléphone (voir `GUIDE-TELEPHONE.md`).
+
+- **33 fiches produits** (une page par produit, sur le modèle du site JP Solaire) : `/produits/<slug>`, générées depuis `content/produits/*.md`. Chaque fiche : titre, prix, bouton WhatsApp, présentation, atouts, ingrédients clés (uniquement ceux lisibles sur les étiquettes ou déjà publiés), pour qui, conseils d'utilisation, comment commander, produits liés, articles liés. Données structurées Product + BreadcrumbList. **Textes à faire valider par WiLAU** (voir CLAUDE.md, points ouverts).
+- **Catalogue `produits-services.html` désormais en HTML statique** (avant : généré en JavaScript, invisible pour Google), avec lien vers chaque fiche. Au passage : le catalogue en ligne était **cassé depuis le 27/09** (les 4 catégories s'affichaient écrasées en colonnes étroites) — corrigé en CSS.
+- **Articles du blog en pages statiques** `/blog/<slug>` (avant : `article?file=...` rendu en JavaScript, mal indexé), avec BlogPosting, fil d'Ariane, produits cités et « À lire aussi ». Les anciennes adresses redirigent. La liste du blog ne dépend plus de l'API GitHub (≈ 9 s de chargement avant, limite de 60 requêtes/heure) : elle est dans la page, et `data/articles.json` gère la publication programmée.
+- Titres d'articles tronqués sur la liste (titres longs sur deux lignes dans le frontmatter) : corrigé.
+- **Article de test « Mon premier article test » supprimé** (il était visible publiquement).
+- **CMS `/admin` migré** de Decap + Netlify Identity (plus fonctionnel depuis la sortie de Netlify) vers **Sveltia CMS + connexion GitHub**, comme JP Solaire. Nouvelle collection « Fiches produits ».
+- **Déploiement** : `wrangler.jsonc` lance `node scripts/build.mjs` avant chaque mise en ligne (vérifié en simulation `wrangler deploy --dry-run`). Le pipeline automatique fonctionne (les articles des 25/09 et 05/10 sont bien en ligne).
+- **Maillage interne** : les articles existants pointent maintenant vers les fiches des produits cités (au lieu de la page catalogue) ; accueil → fiches Potion Magique et Pack Diamond.
+- **5 nouveaux articles programmés** (un par semaine) : peau grasse et pores (27/10), peau sensible (03/11), teint uniforme du corps (10/11), pellicules et cuir chevelu (17/11), idées cadeaux pour les fêtes (24/11).
+- Sitemap : 54 URL (pages + 33 fiches + articles publiés).
+
+Rattrapage du journal (actions déjà en ligne, non journalisées) : article peau mature (25/09), SEO page produits avec Schema.org Produit/FAQ/Breadcrumb (27/09), article cernes (05/10).
+
+**À faire côté humain** : faire valider les fiches par WiLAU ; tester la connexion à `/admin` ; dans Search Console, soumettre à nouveau `sitemap.xml` et demander l'indexation de `/produits-services` et de quelques fiches ; partager les fiches et articles sur la page Facebook.
+
 ## 2026-09-18 — Publication programmée du blog
 
 `js/main.js` filtre désormais les articles dont le champ `date:` du frontmatter est dans le futur : ils restent dans `content/blog/` (donc visibles/éditables dans le CMS) mais n'apparaissent sur `blog.html` qu'une fois leur date atteinte, et un accès direct par lien à un article non encore publié affiche un message d'attente au lieu du contenu. La liste est aussi désormais triée du plus récent au plus ancien. Permet d'écrire plusieurs articles à l'avance et de les dater pour un rythme de publication régulier sans intervention manuelle à chaque fois. Testé en conditions réelles avec un article factice daté de 2099 (confirmé absent de la liste), puis retiré.
@@ -85,16 +104,17 @@ Les photos produits ont un cadrage très inégal (certaines remplissent toute la
 
 Ces actions demandent la création/vérification de comptes externes (identité réelle requise) — je ne peux pas les faire à la place de l'utilisateur :
 
-- [ ] Créer et vérifier la fiche Google Business Profile — **adresse confirmée : Yaoundé**, prêt à créer.
-- [ ] Créer Google Search Console, valider la propriété, soumettre le sitemap.
+- [x] Créer et vérifier la fiche Google Business Profile — en ligne depuis le 2026-09-10 (Yaoundé).
+- [x] Créer Google Search Console, valider la propriété, soumettre le sitemap — déjà configuré (constaté le 2026-09-05).
 - [ ] Créer Bing Webmaster Tools (import depuis Search Console).
 
-## Mois 2 (à venir)
+## Mois 2
 
-- Pages HTML statiques par article de blog (au lieu de tout servir via `article.html?file=`).
-- Données structurées Article/BlogPosting par article, FAQ avec balisage FAQPage.
-- Maillage interne articles ↔ produits.
-- Exploitation de la page Facebook (62 000+ abonnés) comme levier de trafic vers le site — actuellement sous-exploitée.
+- [x] Pages HTML statiques par article de blog (fait le 2026-10-20).
+- [x] Données structurées BlogPosting par article (fait le 2026-10-20). FAQ avec balisage FAQPage : déjà sur produits-services.
+- [x] Maillage interne articles ↔ produits (fait le 2026-10-20, automatique via les liens `/produits/...`).
+- [x] Une page par produit (fait le 2026-10-20).
+- [ ] Exploitation de la page Facebook (62 000+ abonnés) comme levier de trafic vers le site — actuellement sous-exploitée.
 
 ## Mois 3 (à venir)
 

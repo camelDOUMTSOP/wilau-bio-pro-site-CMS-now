@@ -28,6 +28,6 @@ La forme en spirale de la fibre capillaire afro rend le sébum naturel du cuir c
 
 ### 🌿 La routine Faithy pour accompagner la pousse
 
-Notre **Sérum Active Pousse Faithy** est conçu pour stimuler la croissance des cheveux (et de la barbe), en complément du Shampooing Antipelliculaire, de l'Après-Shampooing démêlant et du Traitement Capillaire de la gamme. Appliqué régulièrement sur cuir chevelu propre, il accompagne une routine capillaire pensée pour les cheveux crépus, frisés et bouclés.
+Notre **[Sérum Active Pousse Faithy](https://wilaubio.com/produits/serum-active-pousse-faithy)** est conçu pour stimuler la croissance des cheveux (et de la barbe), en complément du Shampooing Antipelliculaire, de l'Après-Shampooing démêlant et du Traitement Capillaire de la gamme. Appliqué régulièrement sur cuir chevelu propre, il accompagne une routine capillaire pensée pour les cheveux crépus, frisés et bouclés.
 
-👉 **[Découvrir la gamme Faithy — WiLAU Bio](https://wilaubio.com/produits-services)**
+👉 **[Découvrir la gamme Faithy — WiLAU Bio](https://wilaubio.com/produits/pack-faithy)**

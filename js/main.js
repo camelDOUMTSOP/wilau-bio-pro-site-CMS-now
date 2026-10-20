@@ -30,161 +30,35 @@ document.addEventListener('DOMContentLoaded', () => {
         revealElements.forEach(el => revealObserver.observe(el));
     }
 
-    // 3. CATALOGUE DYNAMIQUE WiLAU BIO
+    // 3. CATALOGUE WiLAU BIO
+    // Les fiches produits sont générées en HTML statique par scripts/build.mjs à partir
+    // de content/produits/ (meilleur référencement). Ici, on gère seulement les filtres.
     const productsGrid = document.getElementById('products-grid');
     if (productsGrid) {
-        const productsData = [
-            // --- VISAGE (15 produits) ---
-            { id: 1,  image: "lait-demaquillant-lyly-wilau-bio.webp", category: "visage", name: "Lait Démaquillant Lyly", desc: "Démaquillant doux à base de coco et amande douce. Adapté à tous types de peaux.", price: "7 500" },
-            { id: 2,  image: "gel-tresor-exfoliant-wilau-bio.webp", category: "visage", name: "Gel Trésor Exfoliant", desc: "Exfolie délicatement et désincruste les pores. Peaux mixtes, sensibles ou grasses.", price: "10 000" },
-            { id: 3,  image: "gel-nettoyant-adou-wilau-bio.webp", category: "visage", name: "Gel Nettoyant Adou", desc: "Débarrasse la peau des impuretés et resserre les pores.", price: "10 000" },
-            { id: 4,  image: "gommage-lyly-wilau-bio.webp", category: "visage corps", name: "Gommage Lyly", desc: "Exfoliation profonde visage et corps. Élimine les cellules mortes pour un teint neuf.", price: "7 500" },
-            { id: 5,  image: "masque-argile-verte-wilau-bio.webp", category: "visage", name: "Masque Argile Verte", desc: "L'allié incontournable pour maîtriser la peau acnéique et grasse.", price: "10 000" },
-            { id: 6,  image: "masque-argile-blanche-wilau-bio.webp", category: "visage", name: "Masque Argile Blanche", desc: "Lifte la peau, apporte de l'éclat et serre les pores. Idéal peaux matures.", price: "10 000" },
-            { id: 7,  image: "masque-argile-rouge-wilau-bio.webp", category: "visage", name: "Masque Argile Rouge", desc: "Soin nourrissant et coup d'éclat pour peaux sèches et mixtes.", price: "10 000" },
-            { id: 8,  image: "masque-argile-rose-wilau-bio.webp", category: "visage", name: "Masque Argile Rose", desc: "Contrôle l'acné juvénile. Parfait pour les peaux sensibles et réactives.", price: "10 000" },
-            { id: 9,  image: "lotion-pink-sun-wilau-bio.webp", category: "visage", name: "Lotion Pink Sun", desc: "Éclaircissante anti-tache et acné. Lisse la peau claire.", price: "5 000" },
-            { id: 10, image: "lotion-green-moon-wilau-bio.webp", category: "visage", name: "Lotion Green Moon", desc: "Anti-tache et acné. Adaptée aux peaux noires et caramel.", price: "5 000" },
-            { id: 11, image: "serum-potion-magique-wilau-bio.webp", category: "visage serum", name: "Sérum Potion Magique", desc: "Concentré d'huiles et vitamines contre cernes, rougeurs et ridules (+28 ans).", price: "10 000" },
-            { id: 12, image: "creme-visage-shine-wilau-bio.webp", category: "visage", name: "Crème de visage Shine", desc: "Crème de jour révélateur d'éclat pour toutes les carnations naturelles.", price: "5 000" },
-            { id: 13, image: "creme-visage-kimmy-wilau-bio.webp", category: "visage", name: "Crème de visage Kimmy", desc: "Hydratante, nourrissante et clarifiante pour un teint caramel parfait.", price: "5 000" },
-            { id: 14, image: "creme-visage-diva-wilau-bio.webp", category: "visage", name: "Crème de visage Diva", desc: "Soin clarifiant et correcteur d'imperfections.", price: "7 500" },
-            { id: 15, image: "creme-visage-diamond-wilau-bio.webp", category: "visage", name: "Crème de visage Diamond", desc: "Super éclaircissante, anti-âge au collagène et acide hyaluronique.", price: "7 500" },
-
-            // --- CORPS (9 produits) ---
-            { id: 16, image: "gel-douche-light-wilau-bio.webp", category: "corps", name: "Gel Douche Light", desc: "Clarifiant et gommant pour peaux lumineuses (Gammes Shine & Kimmy).", price: "7 500" },
-            { id: 17, image: "gel-douche-glow-wilau-bio.webp", category: "corps", name: "Gel Douche Glow", desc: "Super éclaircissant et gommant pour peau radieuse (Gammes Diva & Diamond).", price: "7 500" },
-            { id: 18, image: "lait-corps-shine-wilau-bio.webp", category: "corps", name: "Lait corps Shine", desc: "Révélateur d'éclat hydratant pour peaux ébène et carnations naturelles.", price: "10 000" },
-            { id: 19, image: "lait-corps-kimmy-wilau-bio.webp", category: "corps", name: "Lait corps Kimmy", desc: "Hydratant et nourrissant pour un teint caramel clarifié.", price: "12 500" },
-            { id: 20, image: "lait-diva-wilau-bio.webp", category: "corps", name: "Lait Diva", desc: "Clarifiant pour un teint clair uniforme sans imperfections.", price: "15 000" },
-            { id: 21, image: "lait-diamond-wilau-bio.webp", category: "corps", name: "Lait Diamond", desc: "Super éclaircissant et hydratant pour un éclat métissé naturel.", price: "17 500" },
-            { id: 22, image: "huile-radiance-wilau-bio.webp", category: "corps serum", name: "Huile Radiance", desc: "Brillance assurée et protection de l'épiderme contre les agressions.", price: "10 000" },
-            { id: 23, image: "secret-de-meme-wilau-bio.webp", category: "corps", name: "Secret de Mémé", desc: "Crème raffermissante, tonifiante et galbante pour les seins (100% naturel).", price: "7 500" },
-
-            // --- CHEVEUX (5 produits) ---
-            { id: 24, image: "shampooing-faithy-wilau-bio.webp", category: "cheveux", name: "Shampooing Faithy", desc: "Antipelliculaire. Lave et assainit le cuir chevelu en profondeur.", price: "7 500" },
-            { id: 25, image: "leave-in-conditioner-faithy-wilau-bio.webp", category: "cheveux", name: "Leave-in conditioner", desc: "Démêle et protège les cheveux contre la chaleur du séchoir.", price: "7 500" },
-            { id: 26, image: "traitement-faithy-wilau-bio.webp", category: "cheveux", name: "Traitement Faithy", desc: "Aux plantes et beurres végétaux. Stimule la pousse et stop la casse.", price: "7 500" },
-            { id: 27, image: "huile-faithy-wilau-bio.webp", category: "cheveux", name: "Huile Faithy", desc: "Nourrissante, protectrice et activatrice de pousse.", price: "7 500" },
-            { id: 28, image: "serum-active-pousse-faithy-wilau-bio.webp", category: "cheveux", name: "Sérum Active Pousse", desc: "Stimule la croissance des cheveux et de la barbe.", price: "10 000" },
-
-            // --- PACKS (5 nouveaux packs) ---
-            { id: 29, image: "pack-shine-wilau-bio.webp", category: "pack", name: "Pack Shine", desc: "Routine complète pour révéler l'éclat des peaux naturelles.", price: "22 500" },
-            { id: 30, image: "pack-kimmy-wilau-bio.webp", category: "pack", name: "Pack Kimmy", desc: "Le secret du teint caramel parfait en un coffret.", price: "25 000" },
-            { id: 31, image: "pack-diva-wilau-bio.webp", category: "pack", name: "Pack Diva", desc: "Routine clarifiante intégrale pour un visage et corps sans taches.", price: "30 000" },
-            { id: 32, image: "pack-diamond-wilau-bio.webp", category: "pack", name: "Pack Diamond", desc: "Luxe suprême pour un éclaircissement intense et anti-âge.", price: "32 500" },
-            { id: 33, image: "pack-faithy-wilau-bio.webp", category: "pack", name: "Pack Faithy", desc: "Gamme capillaire complète pour la force et la pousse.", price: "30 000" }
-        ];
-
-        const labelMap = { visage: "Visage", corps: "Corps", cheveux: "Cheveux", pack: "Packs" };
-        const categoryIntros = {
-            visage: "Sérums, crèmes et masques pour cibler taches, imperfections et signes de l'âge sur les peaux noires et métissées.",
-            corps: "Laits et gels douche éclaircissants et hydratants pour un teint uniforme, du visage au corps.",
-            cheveux: "La gamme Faithy pour fortifier, nourrir et stimuler la pousse des cheveux crépus, frisés et bouclés.",
-            pack: "Des routines complètes, pensées pour accompagner une problématique précise du début à la fin."
-        };
-        const categoryOrder = ["visage", "corps", "cheveux", "pack"];
-
-        function buildProductCard(p) {
-            const categoryLabel = labelMap[p.category.split(' ')[0]] || p.category.split(' ')[0];
-            const catClass = "cat-" + p.category.split(' ')[0];
-            const card = document.createElement('div');
-            card.className = `product-card reveal active ${catClass}`;
-            card.innerHTML = `
-                <div class="img-wrapper">
-                    <img src="assets/images/${p.image}" alt="${p.name}" loading="lazy">
-                </div>
-                <div class="product-info">
-                    <span class="product-category">${categoryLabel}</span>
-                    <h3>${p.name}</h3>
-
-                    <p class="product-description">${p.desc}</p>
-
-                    <div class="product-price">${p.price === 'Promo' ? '<span style="color:var(--color-gold);">Offre Spéciale</span>' : p.price + ' FCFA'}</div>
-
-                    <a href="https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20j'ai%20d%C3%A9couvert%20votre%20boutique%20en%20ligne%20et%20je%20souhaiterais%20commander%20le%20produit%20suivant%20%3A%20*${encodeURIComponent(p.name)}*.%20Est-il%20disponible%20%3F"
-                       class="btn btn-primary small"
-                       target="_blank">Commander</a>
-                </div>`;
-            return card;
-        }
-
-        // Sections par catégorie (Visage / Corps / Cheveux / Packs) avec un vrai titre
-        // H2 et un court texte d'intro par catégorie, pour donner à Google (et aux
-        // visiteurs) une structure sémantique claire plutôt qu'une grille indifférenciée.
-        function renderCategorySection(cat, items) {
-            const section = document.createElement('div');
-            section.className = `product-category-section cat-section-${cat}`;
-            section.innerHTML = `
-                <h2 class="product-category-title gold-text center">${labelMap[cat] || cat}</h2>
-                ${categoryIntros[cat] ? `<p class="product-category-intro center">${categoryIntros[cat]}</p>` : ''}
-                <div class="grid-4 mt-2 product-category-grid"></div>
-            `;
-            const grid = section.querySelector('.product-category-grid');
-            items.forEach(p => grid.appendChild(buildProductCard(p)));
-            productsGrid.appendChild(section);
-        }
-
-        function displayProducts(filter = "all") {
-            productsGrid.innerHTML = "";
-            if (filter === "all") {
-                categoryOrder.forEach(cat => {
-                    const items = productsData.filter(p => p.category.split(' ')[0] === cat);
-                    if (items.length > 0) renderCategorySection(cat, items);
+        function applyFilter(filter) {
+            productsGrid.querySelectorAll('.product-category-section').forEach(section => {
+                let visible = 0;
+                section.querySelectorAll('.product-card').forEach(card => {
+                    const show = filter === 'all' || (card.dataset.filtres || '').split(' ').includes(filter);
+                    card.style.display = show ? '' : 'none';
+                    if (show) visible++;
                 });
-            } else {
-                const items = productsData.filter(p => p.category.split(' ').includes(filter));
-                if (items.length > 0) renderCategorySection(filter, items);
-            }
-        }
-
-        // Données structurées Produit (Schema.org) : générées une seule fois à partir
-        // du catalogue complet, indépendamment du filtre visuel actuellement affiché.
-        function injectProductSchema() {
-            const itemListElement = productsData.map((p, i) => {
-                const categoryLabel = labelMap[p.category.split(' ')[0]] || p.category.split(' ')[0];
-                const priceNumber = parseFloat(String(p.price).replace(/\s/g, ''));
-                const item = {
-                    "@type": "Product",
-                    "name": p.name,
-                    "description": p.desc,
-                    "image": `https://wilaubio.com/assets/images/${p.image}`,
-                    "category": categoryLabel,
-                    "brand": { "@type": "Brand", "name": "WiLAU BIO" }
-                };
-                if (!isNaN(priceNumber)) {
-                    item.offers = {
-                        "@type": "Offer",
-                        "price": priceNumber,
-                        "priceCurrency": "XAF",
-                        "availability": "https://schema.org/InStock",
-                        "url": "https://wilaubio.com/produits-services"
-                    };
-                }
-                return { "@type": "ListItem", "position": i + 1, "item": item };
+                section.style.display = visible ? '' : 'none';
             });
-            const schema = {
-                "@context": "https://schema.org",
-                "@type": "ItemList",
-                "itemListElement": itemListElement
-            };
-            const script = document.createElement('script');
-            script.type = 'application/ld+json';
-            script.textContent = JSON.stringify(schema);
-            document.head.appendChild(script);
         }
 
-        // Activation des filtres
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                displayProducts(btn.dataset.filter);
+                applyFilter(btn.dataset.filter);
             });
         });
 
-        displayProducts("all");
-        injectProductSchema();
+        // Lien direct vers une catégorie (ex. /produits-services#cheveux)
+        const hashFilter = window.location.hash.replace('#', '');
+        const hashBtn = hashFilter && document.querySelector(`.filter-btn[data-filter="${hashFilter}"]`);
+        if (hashBtn) hashBtn.click();
     }
     
     // PARTIE TEMOIGNAGES
@@ -250,282 +124,65 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     }
     // ==========================================================================
+    // BLOG : liste des articles
     // ==========================================================================
-    // MOTEUR DYNAMIQUE DU BLOG (CONNEXION CMS VIA API GITHUB)
-    // ==========================================================================
+    // Les articles sont générés en pages statiques (blog/<slug>.html) par
+    // scripts/build.mjs, et la liste est déjà présente dans blog.html. On relit
+    // data/articles.json pour faire apparaître un article programmé dès que sa date
+    // de publication est atteinte, sans attendre la prochaine mise en ligne.
     const blogGrid = document.getElementById('blog-grid');
 
+    function escapeHtml(s) {
+        return String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    }
+
+    function publishedArticles(articles) {
+        const now = Date.now();
+        return articles.filter(a => !a.date || Date.parse(a.date) <= now);
+    }
+
     if (blogGrid) {
-        const repoOwner = "cameldoumtsop";
-const repoName = "wilau-bio-pro-site-CMS-now";
-        const folderPath = "content/blog";
-        const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}?ref=main`;
-
-        // Cache local : évite de re-solliciter l'API GitHub (limitée à 60 requêtes/heure
-        // sans authentification) à chaque chargement de la page, et affiche le blog
-        // instantanément lors des visites suivantes.
-        const BLOG_CACHE_KEY = 'wilauBlogCache_v1';
-        const BLOG_CACHE_TTL = 20 * 60 * 1000; // 20 minutes
-
-        function readCache(key) {
-            try {
-                const raw = localStorage.getItem(key);
-                if (!raw) return null;
-                const cached = JSON.parse(raw);
-                if (Date.now() - cached.timestamp > BLOG_CACHE_TTL) return null;
-                return cached.data;
-            } catch (e) { return null; }
-        }
-
-        function writeCache(key, data) {
-            try {
-                localStorage.setItem(key, JSON.stringify({ timestamp: Date.now(), data }));
-            } catch (e) { /* quota dépassé ou navigation privée : on ignore */ }
-        }
-
-        function renderArticles(articles) {
-            blogGrid.innerHTML = "";
-            articles.forEach(a => {
-                const blogCard = document.createElement('article');
-                blogCard.className = "blog-card full-shadow";
-                blogCard.innerHTML = `
-                    <div class="img-wrapper aspect-landscape">
-                        <img src="${a.image || 'assets/images/wilau img 8.webp'}" alt="${a.title}" loading="lazy">
-                    </div>
+        fetch('/data/articles.json', { cache: 'no-cache' })
+            .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
+            .then(articles => {
+                const list = publishedArticles(articles);
+                if (!list.length) return;
+                blogGrid.innerHTML = list.map(a => `
+                <article class="blog-card full-shadow">
+                    <a href="${a.url}" class="img-wrapper aspect-landscape">
+                        <img src="${a.image}" alt="${escapeHtml(a.title)}" loading="lazy">
+                    </a>
                     <div class="blog-info p-2">
-                        <h3>${a.title}</h3>
-                        <p>${a.description || ''}</p>
-                    <a href="article.html?file=${encodeURIComponent(a.fileName)}" class="btn btn-outline small mt-1">Lire l'article</a>
-                    </div>`;
-                blogGrid.appendChild(blogCard);
-            });
-        }
-
-        async function initBlog() {
-            const cached = readCache(BLOG_CACHE_KEY);
-            if (cached && cached.length > 0) {
-                renderArticles(cached);
-                return;
-            }
-
-            try {
-                const response = await fetch(apiUrl, { headers: { 'Accept': 'application/vnd.github+json' } });
-                if (!response.ok) {
-                    if (response.status === 403) {
-                        console.log("Limite de requêtes GitHub atteinte. Conservation des articles HTML.");
-                    } else {
-                        console.log("Dossier distant vide ou introuvable. Conservation des articles HTML.");
-                    }
-                    return;
-                }
-                const files = await response.json();
-                const mdFiles = files.filter(file => file.name.endsWith('.md'));
-
-                if (mdFiles.length > 0) {
-                    const now = Date.now();
-                    const articles = [];
-                    for (const file of mdFiles) {
-                        const fileResponse = await fetch(file.download_url);
-                        const rawText = await fileResponse.text();
-                        const parsedData = parseMarkdownFrontmatter(rawText);
-
-                        // Publication programmée : un article dont la date est dans le
-                        // futur reste dans le CMS mais n'apparaît pas encore sur le blog.
-                        const publishTime = parsedData.date ? Date.parse(parsedData.date) : NaN;
-                        if (!isNaN(publishTime) && publishTime > now) continue;
-
-                        articles.push({
-                            title: parsedData.title,
-                            description: parsedData.description || '',
-                            image: parsedData.image || '',
-                            fileName: file.name,
-                            date: parsedData.date || ''
-                        });
-                    }
-                    // Les plus récents d'abord.
-                    articles.sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0));
-                    renderArticles(articles);
-                    writeCache(BLOG_CACHE_KEY, articles);
-                }
-            } catch (error) {
-                console.error("Erreur de liaison avec l'API GitHub Blog :", error);
-            }
-        }
-
-        function parseMarkdownFrontmatter(text) {
-            const data = {};
-            const matches = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-            if (matches) {
-                const lines = matches[1].split('\n');
-                lines.forEach(line => {
-                    const parts = line.split(':');
-                    if (parts.length >= 2) {
-                        data[parts[0].trim()] = parts.slice(1).join(':').trim().replace(/^["']|["']$/g, '');
-                    }
-                });
-            }
-            return data;
-        }
-
-        initBlog();
-    }
-
-    // ==========================================================================
-    // LECTEUR DYNAMIQUE D'ARTICLE UNIQUE (ISOLÉ & SÉCURISÉ) - CORRIGÉ 🚀
-    // ==========================================================================
-    const articleContent = document.getElementById('article-content');
-    
-    if (articleContent) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const fileName = urlParams.get('file');
-
-        if (!fileName) {
-            articleContent.innerHTML = "<p class='center'>Aucun article spécifié.</p>";
-        } else {
-            const repoOwner = "camelDOUMTSOP";
-            const repoName = "wilau-bio-pro-site-CMS-now"; // ✅ Correction du dépôt ici
-
-            // ✅ Utilisation de encodeURIComponent pour protéger les accents dans l'API GitHub
-            const articleUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/content/blog/${encodeURIComponent(fileName)}?ref=main`;
-
-            // Cache local par article : réduit les appels à l'API GitHub (limitée sans
-            // authentification) et accélère la relecture d'un article déjà consulté.
-            const ARTICLE_CACHE_KEY = `wilauArticleCache_${fileName}`;
-            const ARTICLE_CACHE_TTL = 30 * 60 * 1000; // 30 minutes
-
-            function readArticleCache() {
-                try {
-                    const raw = localStorage.getItem(ARTICLE_CACHE_KEY);
-                    if (!raw) return null;
-                    const cached = JSON.parse(raw);
-                    if (Date.now() - cached.timestamp > ARTICLE_CACHE_TTL) return null;
-                    return cached.rawText;
-                } catch (e) { return null; }
-            }
-
-            function writeArticleCache(rawText) {
-                try {
-                    localStorage.setItem(ARTICLE_CACHE_KEY, JSON.stringify({ timestamp: Date.now(), rawText }));
-                } catch (e) { /* quota dépassé ou navigation privée : on ignore */ }
-            }
-
-            function renderArticle(rawText) {
-                // Séparation Frontmatter / Corps
-                const matches = rawText.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*([\s\S]*)$/);
-                let title = "Article";
-                let image = "";
-                let description = "";
-                let publishDate = "";
-                let bodyHtml = rawText;
-
-                if (matches) {
-                    const metadata = matches[1];
-                    bodyHtml = matches[2];
-
-                    metadata.split(/\r?\n/).forEach(line => {
-                        const parts = line.split(':');
-                        if (parts.length >= 2) {
-                            const key = parts[0].trim();
-                            const val = parts.slice(1).join(':').trim().replace(/^["']|["']$/g, '');
-                            if (key === 'title') title = val;
-                            if (key === 'image') image = val;
-                            if (key === 'description') description = val;
-                            if (key === 'date') publishDate = val;
-                        }
-                    });
-                } else {
-                    bodyHtml = rawText.replace(/^---[\s\S]*?---/, '');
-                }
-
-                // Publication programmée : un lien direct vers un article dont la date
-                // est dans le futur ne doit pas dévoiler le contenu en avance.
-                const publishTime = publishDate ? Date.parse(publishDate) : NaN;
-                if (!isNaN(publishTime) && publishTime > Date.now()) {
-                    articleContent.innerHTML = "<p class='center'>Cet article n'est pas encore publié. <a href='blog.html'>Retourner au blog</a>.</p>";
-                    return;
-                }
-
-                if (title !== "Article") document.title = `${title} | Wilau Bio`;
-
-                // Balises SEO posées dynamiquement (titre, description, canonical, Open Graph)
-                // à partir des données de l'article, pour que chaque article du blog soit
-                // correctement balisé sans avoir à créer une page HTML par article.
-                function setMetaTag(selector, attrs) {
-                    let el = document.querySelector(selector);
-                    if (!el) {
-                        el = document.createElement(attrs.tag === 'link' ? 'link' : 'meta');
-                        document.head.appendChild(el);
-                    }
-                    Object.keys(attrs).forEach(key => {
-                        if (key !== 'tag') el.setAttribute(key, attrs[key]);
-                    });
-                }
-
-                const articleFullUrl = `https://wilaubio.com/article?file=${encodeURIComponent(fileName)}`;
-                const articleImageUrl = image
-                    ? (image.startsWith('http') ? image : `https://wilaubio.com/${image.replace(/^\//, '')}`)
-                    : 'https://wilaubio.com/assets/images/wilau img 8.webp';
-
-                if (description) {
-                    setMetaTag('meta[name="description"]', { tag: 'meta', name: 'description', content: description });
-                }
-                setMetaTag('link[rel="canonical"]', { tag: 'link', rel: 'canonical', href: articleFullUrl });
-                setMetaTag('meta[property="og:type"]', { tag: 'meta', property: 'og:type', content: 'article' });
-                setMetaTag('meta[property="og:url"]', { tag: 'meta', property: 'og:url', content: articleFullUrl });
-                setMetaTag('meta[property="og:title"]', { tag: 'meta', property: 'og:title', content: `${title} | Wilau Bio` });
-                if (description) {
-                    setMetaTag('meta[property="og:description"]', { tag: 'meta', property: 'og:description', content: description });
-                }
-                setMetaTag('meta[property="og:image"]', { tag: 'meta', property: 'og:image', content: articleImageUrl });
-
-                // Markdown basique vers HTML
-                let cleanBody = bodyHtml
-                    .replace(/^### (.*$)/gim, '<h3 style="margin:25px 0 15px 0; color:var(--color-dark); font-size:1.4rem;">$1</h3>')
-                    .replace(/\*\*(.*?)\*\*/gim, '<strong style="color:var(--color-dark);">$1</strong>')
-                    .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" class="btn btn-primary small" style="display:inline-block; margin: 10px 0;" target="_blank">$1</a>')
-                    .trim()
-                    .replace(/\n/g, '<br>');
-
-                // Rendu final
-                articleContent.innerHTML = `
-                    <h1 style="font-size: 2.2rem; font-family: 'Playfair Display', serif; margin-bottom: 15px; color: var(--color-dark);">${title}</h1>
-                    <span style="color: var(--color-gold); font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 25px;">PAR WILAU MAGAZINE • CONSEIL BEAUTÉ</span>
-                    ${image ? `<img src="${image}" alt="${title}" style="width:100%; max-height:400px; object-fit:cover; border-radius:8px; margin-bottom:30px; box-shadow: var(--shadow-light);">` : ''}
-                    <div style="font-size: 1.05rem; line-height: 1.8; color: #374151; font-family: 'Montserrat', sans-serif;">
-                        ${cleanBody}
+                        <h3><a href="${a.url}" class="product-title-link">${escapeHtml(a.title)}</a></h3>
+                        <p>${escapeHtml(a.description)}</p>
+                        <a href="${a.url}" class="btn btn-outline small mt-1">Lire l'article</a>
                     </div>
-                `;
-            }
-
-            async function loadArticle() {
-                const cachedRawText = readArticleCache();
-                if (cachedRawText) {
-                    renderArticle(cachedRawText);
-                    return;
-                }
-
-                try {
-                    const response = await fetch(articleUrl, { headers: { 'Accept': 'application/vnd.github+json' } });
-                    if (!response.ok) throw new Error(response.status === 403 ? "Limite de requêtes GitHub atteinte" : "Article introuvable sur GitHub");
-                    const fileData = await response.json();
-
-                    // Décodage sécurisé compatible avec les politiques Netlify
-                    const binaryString = atob(fileData.content.replace(/\s/g, ''));
-                    const bytes = new Uint8Array(binaryString.length);
-                    for (let i = 0; i < binaryString.length; i++) {
-                        bytes[i] = binaryString.charCodeAt(i);
-                    }
-                    const rawText = new TextDecoder('utf-8').decode(bytes);
-
-                    renderArticle(rawText);
-                    writeArticleCache(rawText);
-                } catch (error) {
-                    console.error("Erreur lors du chargement du lecteur d'article :", error);
-                    articleContent.innerHTML = "<p class='center' style='color:#7A2A1F; text-align:center; padding: 2rem;'>Cet article est temporairement indisponible. <a href='blog.html'>Retourner au blog</a>.</p>";
-                }
-            }
-            loadArticle();
-        }
+                </article>`).join('');
+            })
+            .catch(() => { /* la liste statique déjà présente dans la page reste affichée */ });
     }
 
-}); 
+    // ==========================================================================
+    // ANCIENNES ADRESSES D'ARTICLES (article.html?file=...)
+    // ==========================================================================
+    // Les anciens liens (partagés sur Facebook, indexés par Google...) redirigent
+    // vers la nouvelle page statique de l'article.
+    const articleContent = document.getElementById('article-content');
+    if (articleContent) {
+        const fileName = new URLSearchParams(window.location.search).get('file');
+        fetch('/data/articles.json', { cache: 'no-cache' })
+            .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
+            .then(articles => {
+                const article = fileName && articles.find(a => a.file === fileName);
+                if (article && publishedArticles([article]).length) {
+                    window.location.replace(article.url);
+                } else {
+                    articleContent.innerHTML = "<p class='center'>Cet article n'est pas (ou pas encore) disponible. <a href='/blog'>Voir tous les articles du blog</a>.</p>";
+                }
+            })
+            .catch(() => {
+                articleContent.innerHTML = "<p class='center'>Cet article est temporairement indisponible. <a href='/blog'>Retourner au blog</a>.</p>";
+            });
+    }
+
+});

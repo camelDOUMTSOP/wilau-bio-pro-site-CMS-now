@@ -1,19 +1,68 @@
+# Configuration Sveltia CMS — administration de wilaubio.com (/admin)
+#
+# Connexion : bouton « Se connecter avec GitHub » (compte ayant accès au dépôt).
+# L'authentification passe par le petit worker Cloudflare déjà utilisé pour
+# JP Solaire (jpsolaire-cms-auth), sur le même compte Cloudflare/GitHub.
+#
+# Chaque enregistrement crée un commit sur la branche main : Cloudflare régénère
+# alors automatiquement le site (fiches produits, articles, sitemap) en 1 à 2 minutes.
+
 backend:
-  name: git-gateway
+  name: github
+  repo: cameldoumtsop/wilau-bio-pro-site-CMS-now
   branch: main
+  base_url: https://jpsolaire-cms-auth.lecoindevcamel.workers.dev
+  auth_endpoint: auth
 
 media_folder: "assets/images/blog"
 public_folder: "/assets/images/blog"
 
+locale: "fr"
+
 collections:
   - name: "blog"
     label: "Articles de Blog"
+    label_singular: "Article"
     folder: "content/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: ["date", "title"]
     fields:
       - { label: "Titre", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Date de publication (un article daté dans le futur reste caché jusqu'à cette date)", name: "date", widget: "datetime" }
       - { label: "Image", name: "image", widget: "image" }
-      - { label: "Description courte", name: "description", widget: "text" }
-      - { label: "Contenu", name: "body", widget: "markdown" }
+      - { label: "Description courte (résumé Google, ~150 caractères)", name: "description", widget: "text" }
+      - { label: "Contenu (astuce : un lien vers /produits/nom-du-produit ajoute la fiche en bas de l'article)", name: "body", widget: "markdown" }
+
+  - name: "produits"
+    label: "Fiches produits"
+    label_singular: "Produit"
+    folder: "content/produits"
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: ["ordre", "title", "categorie"]
+    media_folder: "/assets/images"
+    public_folder: ""
+    fields:
+      - { label: "Nom du produit", name: "title", widget: "string" }
+      - { label: "Ordre d'affichage dans le catalogue", name: "ordre", widget: "number", value_type: "int" }
+      - label: "Catégorie"
+        name: "categorie"
+        widget: "select"
+        options:
+          - { label: "Visage", value: "visage" }
+          - { label: "Corps", value: "corps" }
+          - { label: "Cheveux", value: "cheveux" }
+          - { label: "Packs", value: "pack" }
+      - { label: "Filtres supplémentaires (ex. « visage corps » pour apparaître dans les deux filtres)", name: "filtres", widget: "string", required: false }
+      - { label: "Gamme (ex. Diva, Faithy...)", name: "gamme", widget: "string", required: false }
+      - { label: "Prix en FCFA (ex. 7 500)", name: "prix", widget: "string" }
+      - { label: "Photo du produit", name: "image", widget: "image" }
+      - { label: "Résumé (texte court du catalogue)", name: "resume", widget: "text" }
+      - { label: "Description Google (~150 caractères)", name: "description_seo", widget: "text", required: false }
+      - { label: "Atouts", name: "avantages", widget: "list", required: false }
+      - { label: "Ingrédients clés", name: "ingredients", widget: "list", required: false }
+      - { label: "Pour qui ?", name: "pour_qui", widget: "text", required: false }
+      - { label: "Conseils d'utilisation", name: "utilisation", widget: "text", required: false }
+      - { label: "Produits liés (noms de fichiers, ex. lait-corps-diva)", name: "produits_lies", widget: "list", required: false }
+      - { label: "Présentation détaillée", name: "body", widget: "markdown" }

@@ -23,7 +23,7 @@ La peau du contour de l'œil est l'une des plus fines du visage. Elle contient m
 
 * **Dormir suffisamment et régulièrement** : c'est le premier levier, et souvent le plus efficace.
 * **Appliquer un soin dédié au contour de l'œil**, en tapotant doucement avec l'annulaire, sans frotter.
-* **Protéger la zone du soleil**, qui foncer la pigmentation déjà présente.
+* **Protéger la zone du soleil**, qui fait foncer la pigmentation déjà présente.
 * **Hydrater régulièrement** pour garder une peau souple et moins marquée.
 * **Rester patiente** : les résultats sur les cernes se voient après plusieurs semaines d'utilisation régulière, pas en quelques jours.
 
@@ -35,4 +35,4 @@ Si des cernes très marqués apparaissent brutalement, s'accompagnent de gonflem
 
 Notre **Sérum Potion Magique** est un concentré d'huiles et de vitamines, conçu pour agir sur les cernes, les rougeurs et les ridules. Il s'intègre à une routine régulière, comme décrit dans nos conseils ci-dessus.
 
-👉 **[Découvrir le Sérum Potion Magique — WiLAU Bio](https://wilaubio.com/produits-services)**
+👉 **[Découvrir le Sérum Potion Magique — WiLAU Bio](https://wilaubio.com/produits/serum-potion-magique)**

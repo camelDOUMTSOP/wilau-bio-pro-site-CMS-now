@@ -16,21 +16,31 @@ Départ : 01/09/2026 — Échéance : 01/12/2026.
 
 ## Stack technique
 
-- Site statique HTML/CSS/JS (pas de framework).
-- Dépôt GitHub → déploiement automatique sur Cloudflare Pages.
-- Nom de domaine chez Hostinger.
-- Ex-hébergé sur Netlify (migré après épuisement des minutes de build).
-- CMS : Decap CMS (`/admin`), articles de blog en Markdown dans `content/blog/`, lus côté client via l'API GitHub (`js/main.js`).
-- `<head>` dupliqué dans chaque page HTML (pas de partial/include) — toute balise à poser globalement (GA4, meta par défaut...) doit être répétée fichier par fichier.
+- Site statique HTML/CSS/JS (pas de framework), dépôt GitHub `cameldoumtsop/wilau-bio-pro-site-CMS-now`, branche `main`.
+- Hébergement : **Cloudflare Worker `wilaubio`** (Workers Builds, pas Pages). Chaque push sur `main` déclenche `npx wrangler deploy`, qui lance d'abord `node scripts/build.mjs` (clé `build` de `wrangler.jsonc`). `.assetsignore` exclut du site public `.git`, `content/`, `scripts/`, les fichiers de doc, etc.
+- Nom de domaine chez Hostinger. Ex-hébergé sur Netlify (`netlify.toml` n'a plus d'effet, conservé).
+- **Générateur `scripts/build.mjs`** (Node seul, aucune dépendance) :
+  - `content/produits/*.md` → une fiche par produit `produits/<slug>.html` + catalogue statique de `produits-services.html` (entre les marqueurs `CATALOGUE`) ;
+  - `content/blog/*.md` → une page par article `blog/<slug>.html` + liste de `blog.html` (marqueurs `ARTICLES`) + `data/articles.json` ;
+  - `sitemap.xml` régénéré entièrement.
+  - Les dossiers `produits/`, `blog/`, `data/` et le sitemap sont **générés** : toujours modifier le Markdown, jamais le HTML généré. Les sorties sont aussi commitées (relancer `node scripts/build.mjs` avant de commit).
+- Publication programmée : un article daté dans le futur a déjà sa page, mais n'apparaît dans la liste du blog (via `data/articles.json` lu dans le navigateur) qu'à sa date ; il entre dans le sitemap au déploiement suivant.
+- Un lien vers `/produits/<slug>` dans un article ajoute automatiquement la fiche en bas de l'article, et l'article dans la section « À lire sur le blog » de la fiche.
+- Anciennes URL `article?file=xxx.md` : `js/main.js` redirige vers `/blog/<slug>`.
+- CMS : **Sveltia CMS** (`/admin`), backend GitHub, authentification via le worker `jpsolaire-cms-auth.lecoindevcamel.workers.dev` (le même que JP Solaire, code dans `D:\CAMEL\cms-auth-worker`). Collections : articles + fiches produits.
+- Prévisualisation locale : `node scripts/serve.mjs` (imite les URL sans `.html` de Cloudflare).
+- `<head>` dupliqué dans chaque page HTML écrite à la main (accueil, produits-services, à propos, blog, 3 articles statiques) — toute balise globale doit y être répétée, ainsi que dans `layout()` de `scripts/build.mjs`.
 
 ## Pages connues
 
 - `index.html` — accueil
-- `produits-services.html` — catalogue (onglets Visage / Corps / Cheveux / Packs, ~28 produits, dont "Portion Magique", "Gamme Diamond")
+- `produits-services.html` — catalogue (filtres Visage / Corps / Cheveux / Packs, 33 fiches dont 5 packs) + prestations du cabinet + FAQ
+- `produits/<slug>` — 33 fiches produits générées (ex. `/produits/serum-potion-magique`)
 - `a-propos-contact.html` — histoire + formulaire de contact
 - `blog.html` — "Journal Beauté"
-- `article-hydratation.html`, `article-cacao.html`, `article-exfoliation.html` — articles statiques
-- `article.html?file=...` — lecteur d'article dynamique pour les posts du CMS
+- `blog/<slug>` — articles générés depuis le CMS
+- `article-hydratation.html`, `article-cacao.html`, `article-exfoliation.html` — anciens articles statiques écrits à la main
+- `article.html?file=...` — ancienne adresse, ne fait plus que rediriger
 
 ## Règles absolues à respecter
 
@@ -49,7 +59,8 @@ Départ : 01/09/2026 — Échéance : 01/12/2026.
 
 ## Points ouverts — à clarifier avec l'utilisateur avant d'agir dessus
 
-- **Migration Netlify → Cloudflare Pages** : `admin/index.html` charge encore le widget Netlify Identity pour l'authentification CMS, et `netlify.toml` (en-têtes CSP) est toujours présent à la racine. Si l'hébergement n'est plus sur Netlify, l'authentification Identity risque de ne plus fonctionner et le fichier `netlify.toml` n'a plus d'effet (Cloudflare Pages utilise un fichier `_headers`, pas `netlify.toml`). Statut au 2026-09-01 : pas encore vérifié. À tester (essayer de se connecter à `/admin`) avant d'y toucher.
+- **Textes des fiches produits à faire valider par WiLAU** (rédigés le 2026-10-20 d'après le catalogue et les étiquettes visibles sur les photos) : notamment contenu exact du Pack Faithy, mode d'emploi de l'après-shampooing (avec ou sans rinçage), photo de l'« Huile Faithy » (elle montre une crème capillaire), ingrédients de Secret de Mémé, utilisations conseillées des masques.
+- **Connexion au CMS `/admin`** à tester en réel (bouton « Se connecter avec GitHub »).
 
 ## État d'avancement
 
