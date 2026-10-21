@@ -596,5 +596,9 @@ body:not(.bg-cream) .header:not(.scrolled) .logo, body:not(.bg-cream) .header:no
     .product-hero-actions .btn { width: 100%; text-align: center; }
     .article-content { padding: 1.25rem; }
     .article-content h1 { font-size: 1.7rem; }
-    .product-card-actions .btn { width: 100%; padding: 6px 8px; font-size: 0.75rem; }
+    .product-card-actions .btn { width: 100%; padding: 8px; font-size: 0.85rem; margin-bottom: 0.5rem; }
+    /* Cartes du catalogue épurées : nom lisible, prix, un seul bouton. */
+    .product-card .product-info h3 { font-size: 0.95rem !important; line-height: 1.25 !important; margin: 0.4rem 0 0.2rem !important; }
+    .product-card .product-info .product-price { font-size: 1rem !important; margin: 0 0 0.6rem !important; }
+    .product-card .product-info { padding: 0.5rem 0.6rem 0 !important; }
 }

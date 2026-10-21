@@ -365,13 +365,10 @@ function productCard(p, headingTag = 'h3') {
                             <img src="${p.image}" alt="${esc(p.title)} — WiLAU BIO" loading="lazy">
                         </a>
                         <div class="product-info">
-                            <span class="product-category">${esc(p.categorieLabel)}</span>
                             <${headingTag}><a href="${p.url}" class="product-title-link">${esc(p.title)}</a></${headingTag}>
-                            <p class="product-description">${esc(p.resume)}</p>
                             <div class="product-price">${formatPrix(p)}</div>
                             <div class="product-card-actions">
-                                <a href="${p.url}" class="btn btn-outline small">Voir la fiche</a>
-                                <a href="${orderLink(p)}" class="btn btn-primary small" target="_blank" rel="noopener">Commander</a>
+                                <a href="${p.url}" class="btn btn-primary small">Voir la fiche</a>
                             </div>
                         </div>
                     </div>`;
