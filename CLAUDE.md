@@ -1,6 +1,6 @@
 # Projet SEO WiLAU BIO (wilaubio.com)
 
-Ce fichier donne le contexte permanent du projet. Pour l'historique des actions déjà réalisées, voir [journal-seo-wilaubio.md](journal-seo-wilaubio.md).
+Ce fichier donne le contexte permanent du projet. Pour l'historique des actions déjà réalisées, voir [journal-seo-wilaubio.md](journal-seo-wilaubio.md). Les mots-clés à viser (recherche AnswerThePublic) sont dans [mots-cles-seo.md](mots-cles-seo.md) : s'y référer avant d'écrire un article ou de modifier une fiche produit.
 
 ## Contexte business
 

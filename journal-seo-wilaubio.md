@@ -2,6 +2,11 @@
 
 Historique des actions menées dans le cadre de l'objectif : 10 nouveaux clients en 3 mois (01/09/2026 → 01/12/2026). Contexte permanent du projet : voir [CLAUDE.md](CLAUDE.md).
 
+## 2026-10-21 — Recherche de mots-clés + catalogue mobile épuré
+
+- Recherche AnswerThePublic enregistrée dans `mots-cles-seo.md` (29 mots-clés, priorités). Sujet le plus recherché : taches brunes / hyperpigmentation (≈ 2 100 + 875 recherches/mois), puis bienfaits du beurre de karité (≈ 1 500).
+- Cartes du catalogue simplifiées à la demande de l'utilisateur (trop chargées sur mobile) : photo, nom, prix, bouton « Voir la fiche » (la commande WhatsApp reste sur chaque fiche).
+
 ## 2026-10-20 — Fiches produits, blog statique, CMS réparé (reprise du projet sur un nouveau poste)
 
 Contexte : reprise du projet sur un autre PC, avant un passage à un travail 100 % téléphone (voir `GUIDE-TELEPHONE.md`).
