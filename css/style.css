@@ -439,6 +439,19 @@ body:not(.bg-cream) .header:not(.scrolled) .logo, body:not(.bg-cream) .header:no
 .whatsapp-float:hover { transform: scale(1.1); background-color: #1ebe57; animation: none; }
 .whatsapp-float i { color: #fff; font-size: 35px; }
 
+/* Variante « Commander » des fiches produits : pilule avec texte */
+.whatsapp-float.whatsapp-float-cta {
+    width: auto;
+    padding: 0 24px 0 18px;
+    gap: 10px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.3px;
+}
+.whatsapp-float.whatsapp-float-cta:hover { transform: scale(1.05); }
+.whatsapp-float.whatsapp-float-cta i { font-size: 28px; }
+
 @keyframes pulse-wa {
     0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
     70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }

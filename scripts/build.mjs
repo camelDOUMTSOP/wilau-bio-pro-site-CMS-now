@@ -214,7 +214,7 @@ const truncate = (s, n) => (s.length <= n ? s : s.slice(0, n - 1).replace(/\s+\S
 // Gabarit commun (en-tête, pied de page) — identique aux pages existantes
 // ---------------------------------------------------------------------------
 
-function layout({ title, description, canonical, ogType = 'website', ogImage, head = '', body, active = '' }) {
+function layout({ title, description, canonical, ogType = 'website', ogImage, head = '', body, active = '', float = '' }) {
     const nav = (href, label, key) => `<li><a href="${href}"${active === key ? ' class="active"' : ''}>${label}</a></li>`;
     return `<!DOCTYPE html>
 <html lang="fr">
@@ -307,7 +307,7 @@ ${body}
             </div>
         </div>
     </footer>
-    <a href="${whatsappLink("Bonjour WiLAU BIO, j'ai une question depuis votre site web.")}" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    ${float || `<a href="${whatsappLink("Bonjour WiLAU BIO, j'ai une question depuis votre site web.")}" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp"><i class="fab fa-whatsapp"></i></a>`}
     <script src="/js/main.js"></script>
 </body>
 </html>
@@ -498,6 +498,7 @@ ${linkedArticles.length ? `
         title: `${p.title} — ${p.categorieLabel} | WiLAU BIO Douala & Yaoundé`,
         description: p.descriptionSeo,
         canonical: p.url,
+        float: `<a href="${orderLink(p)}" class="whatsapp-float whatsapp-float-cta" target="_blank" rel="noopener" aria-label="Commander ${esc(p.title)} sur WhatsApp"><i class="fab fa-whatsapp"></i><span>Commander</span></a>`,
         ogType: 'product',
         ogImage: p.image,
         head: `${jsonLd(productSchema)}\n    ${jsonLd(breadcrumbSchema)}`,
