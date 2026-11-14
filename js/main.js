@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     revealObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.08 });
+        }, { threshold: 0 }); // 0 : une section très haute (ex. liste du blog sur mobile) doit aussi apparaître
         revealElements.forEach(el => revealObserver.observe(el));
     }
 
