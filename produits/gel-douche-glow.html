@@ -51,7 +51,7 @@
         </div>
     </header>
 
-    <main class="product-page">
+    <main class="product-page" data-slug="gel-douche-glow">
         <div class="container">
             <nav class="breadcrumb" aria-label="Fil d'Ariane">
                 <a href="/">Accueil</a> <span>›</span>
@@ -70,7 +70,7 @@
                     <p class="product-lead">Super éclaircissant et gommant pour peau radieuse (Gammes Diva &amp; Diamond).</p>
                     <div class="product-price product-price-big">7 500 FCFA</div>
                     <div class="product-hero-actions">
-                        <a href="https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20j'ai%20d%C3%A9couvert%20votre%20boutique%20en%20ligne%20et%20je%20souhaiterais%20commander%20le%20produit%20suivant%20%3A%20*Gel%20Douche%20Glow*.%20Est-il%20disponible%20%3F" class="btn btn-primary" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Commander sur WhatsApp</a>
+                        <a href="https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20j'ai%20d%C3%A9couvert%20votre%20boutique%20en%20ligne%20et%20je%20souhaiterais%20commander%20le%20produit%20suivant%20%3A%20*Gel%20Douche%20Glow*.%20Est-il%20disponible%20%3F" class="btn btn-primary" data-order target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Commander sur WhatsApp</a>
                         <a href="https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%2C%20j'aimerais%20un%20conseil%20%3A%20le%20produit%20*Gel%20Douche%20Glow*%20est-il%20adapt%C3%A9%20%C3%A0%20ma%20peau%20%3F" class="btn btn-outline" target="_blank" rel="noopener">Demander conseil</a>
                     </div>
                     <ul class="product-reassurance">
@@ -120,15 +120,15 @@
             </div>
 
             <div class="cta-blog mt-3 center p-3 bg-dark text-light border-gold product-cta">
-                <h2 class="gold-text">Gel Douche Glow — 7 500 FCFA</h2>
+                <h2 class="gold-text">Gel Douche Glow — <span class="product-price-cta">7 500 FCFA</span></h2>
                 <p>Commandez en quelques secondes ou demandez un conseil personnalisé.</p>
-                <a href="https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20j'ai%20d%C3%A9couvert%20votre%20boutique%20en%20ligne%20et%20je%20souhaiterais%20commander%20le%20produit%20suivant%20%3A%20*Gel%20Douche%20Glow*.%20Est-il%20disponible%20%3F" class="btn btn-primary gold-btn" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Commander sur WhatsApp</a>
+                <a href="https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20j'ai%20d%C3%A9couvert%20votre%20boutique%20en%20ligne%20et%20je%20souhaiterais%20commander%20le%20produit%20suivant%20%3A%20*Gel%20Douche%20Glow*.%20Est-il%20disponible%20%3F" class="btn btn-primary gold-btn" data-order target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Commander sur WhatsApp</a>
             </div>
 
             <section class="product-related">
                 <h2 class="center">Complétez votre routine</h2>
                 <div class="grid-4 mt-2">
-                    <div class="product-card reveal active cat-corps" data-filtres="corps">
+                    <div class="product-card reveal active cat-corps" data-filtres="corps" data-slug="lait-corps-diva">
                         <a href="/produits/lait-corps-diva" class="img-wrapper" aria-label="Lait corps Diva">
                             <img src="/assets/images/lait-diva-wilau-bio.webp" alt="Lait corps Diva — WiLAU BIO" loading="lazy">
                         </a>
@@ -140,7 +140,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="product-card reveal active cat-corps" data-filtres="corps">
+                    <div class="product-card reveal active cat-corps" data-filtres="corps" data-slug="lait-corps-diamond">
                         <a href="/produits/lait-corps-diamond" class="img-wrapper" aria-label="Lait corps Diamond">
                             <img src="/assets/images/lait-diamond-wilau-bio.webp" alt="Lait corps Diamond — WiLAU BIO" loading="lazy">
                         </a>
@@ -152,7 +152,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="product-card reveal active cat-visage" data-filtres="visage corps">
+                    <div class="product-card reveal active cat-visage" data-filtres="visage corps" data-slug="gommage-lyly">
                         <a href="/produits/gommage-lyly" class="img-wrapper" aria-label="Gommage Lyly">
                             <img src="/assets/images/gommage-lyly-wilau-bio.webp" alt="Gommage Lyly — WiLAU BIO" loading="lazy">
                         </a>
@@ -164,7 +164,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="product-card reveal active cat-corps" data-filtres="corps">
+                    <div class="product-card reveal active cat-corps" data-filtres="corps" data-slug="gel-douche-light">
                         <a href="/produits/gel-douche-light" class="img-wrapper" aria-label="Gel Douche Light">
                             <img src="/assets/images/gel-douche-light-wilau-bio.webp" alt="Gel Douche Light — WiLAU BIO" loading="lazy">
                         </a>
@@ -179,6 +179,10 @@
                 </div>
             </section>
 
+            <section class="product-section product-articles">
+                <h2>À lire sur le blog</h2>
+                <ul class="product-list"><li><a href="/blog/teint-uniforme-pourquoi-le-corps-merite-autant-d-attention-que-le-visage">Teint uniforme : pourquoi le corps mérite autant d'attention que le visage</a></li></ul>
+            </section>
         </div>
     </main>
 
@@ -219,7 +223,7 @@
             </div>
         </div>
     </footer>
-    <a href="https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20j'ai%20d%C3%A9couvert%20votre%20boutique%20en%20ligne%20et%20je%20souhaiterais%20commander%20le%20produit%20suivant%20%3A%20*Gel%20Douche%20Glow*.%20Est-il%20disponible%20%3F" class="whatsapp-float whatsapp-float-cta" target="_blank" rel="noopener" aria-label="Commander Gel Douche Glow sur WhatsApp"><i class="fab fa-whatsapp"></i><span>Commander</span></a>
+    <a href="https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20j'ai%20d%C3%A9couvert%20votre%20boutique%20en%20ligne%20et%20je%20souhaiterais%20commander%20le%20produit%20suivant%20%3A%20*Gel%20Douche%20Glow*.%20Est-il%20disponible%20%3F" class="whatsapp-float whatsapp-float-cta" data-order target="_blank" rel="noopener" aria-label="Commander Gel Douche Glow sur WhatsApp"><i class="fab fa-whatsapp"></i><span>Commander</span></a>
     <script src="/js/main.js"></script>
 </body>
 </html>

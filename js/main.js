@@ -186,3 +186,85 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+// PROMOTION EN COURS
+// data/promo.json est généré par scripts/build.mjs depuis content/promotion.md.
+// Pendant la promo : lien « Promos » dans le menu, bouton flottant, prix barrés sur
+// les fiches et le catalogue, message WhatsApp « promotion ». À la date de fin,
+// tout disparaît automatiquement (dates au fuseau du Cameroun, fin incluse).
+(function () {
+    fetch('/data/promo.json', { cache: 'no-cache' })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((promo) => {
+            const page = document.querySelector('.promo-page');
+            const produits = (promo && promo.produits) || {};
+            const now = Date.now();
+            const debut = promo && promo.debut ? Date.parse(promo.debut + 'T00:00:00+01:00') : -Infinity;
+            const fin = promo && promo.fin ? Date.parse(promo.fin + 'T23:59:59+01:00') : Infinity;
+            const active = Object.keys(produits).length > 0 && now >= debut && now <= fin;
+
+            // Page /promotions : affiche l'offre ou le message « aucune promotion »
+            if (page) {
+                const a = page.querySelector('.promo-active');
+                const e = page.querySelector('.promo-ended');
+                if (a) a.hidden = !active;
+                if (e) e.hidden = active;
+            }
+            if (!active) return;
+
+            const onPromoPage = !!page;
+
+            // Lien dans le menu
+            const navList = document.querySelector('#nav-menu ul');
+            if (navList && !navList.querySelector('.nav-promo')) {
+                const li = document.createElement('li');
+                li.innerHTML = '<a href="/promotions" class="nav-promo' + (onPromoPage ? ' active' : '') + '">🔥 Promos</a>';
+                navList.insertBefore(li, navList.firstChild);
+            }
+
+            // Bouton flottant (sauf sur la page promo elle-même)
+            if (!onPromoPage && !document.querySelector('.promo-float')) {
+                const btn = document.createElement('a');
+                btn.href = '/promotions';
+                btn.className = 'promo-float';
+                btn.innerHTML = '🔥 <span>Promo en cours</span>';
+                btn.setAttribute('aria-label', 'Voir la promotion en cours');
+                document.body.appendChild(btn);
+            }
+
+            const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+            const prixHtml = (p) => (p.prixNormal ? '<s>' + esc(p.prixNormal) + ' FCFA</s> ' : '') + '<strong>' + esc(p.prixPromo) + ' FCFA</strong>';
+
+            // Fiche produit en promotion
+            const fiche = document.querySelector('.product-page[data-slug]');
+            const pf = fiche && produits[fiche.dataset.slug];
+            if (pf) {
+                const big = fiche.querySelector('.product-price-big');
+                if (big) {
+                    big.classList.add('promo-price');
+                    big.innerHTML = prixHtml(pf) + ' <a href="/promotions" class="promo-badge promo-badge-inline">Promo</a>';
+                }
+                const cta = fiche.querySelector('.product-price-cta');
+                if (cta) cta.innerHTML = prixHtml(pf);
+                document.querySelectorAll('a[data-order]').forEach((l) => { l.href = pf.commande; });
+            }
+
+            // Cartes produits (catalogue, « Complétez votre routine »)
+            if (!onPromoPage) {
+                document.querySelectorAll('.product-card[data-slug]').forEach((card) => {
+                    const p = produits[card.dataset.slug];
+                    if (!p) return;
+                    const price = card.querySelector('.product-price');
+                    if (price) { price.classList.add('promo-price'); price.innerHTML = prixHtml(p); }
+                    const img = card.querySelector('.img-wrapper');
+                    if (img && !img.querySelector('.promo-badge')) {
+                        const b = document.createElement('span');
+                        b.className = 'promo-badge';
+                        b.textContent = 'Promo';
+                        img.appendChild(b);
+                    }
+                });
+            }
+        })
+        .catch(() => {});
+})();

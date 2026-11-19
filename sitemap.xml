@@ -21,6 +21,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://wilaubio.com/promotions</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://wilaubio.com/produits/lait-demaquillant-lyly</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -184,6 +189,18 @@
     <loc>https://wilaubio.com/produits/pack-faithy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wilaubio.com/blog/pellicules-et-demangeaisons-prendre-soin-de-son-cuir-chevelu</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wilaubio.com/blog/teint-uniforme-pourquoi-le-corps-merite-autant-d-attention-que-le-visage</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://wilaubio.com/blog/peau-sensible-et-reactive-comment-en-prendre-soin-sans-l-agresser</loc>

@@ -8,6 +8,7 @@
 //                            + le catalogue de produits-services.html
 //   content/blog/*.md      → une page par article dans blog/<slug>.html
 //                            + la liste de blog.html + data/articles.json
+//   content/promotion.md   → la page promotions.html + data/promo.json
 // et régénère sitemap.xml.
 //
 // Les dossiers produits/, blog/ et data/ sont entièrement générés : ne pas y
@@ -94,6 +95,19 @@ function parseYaml(src) {
             while (i < lines.length && /^\s*-(\s|$)/.test(lines[i])) {
                 let item = lines[i].replace(/^\s*-\s?/, '');
                 i++;
+                // Liste d'objets (ex. « - produit: x » puis « prix_promo: y » en retrait)
+                const kv = /^([A-Za-z_][\w-]*):\s*(.*)$/;
+                if (kv.test(item) && !/^https?:/.test(item)) {
+                    const obj = {};
+                    let km = item.match(kv);
+                    obj[km[1]] = unquote(km[2]);
+                    while (i < lines.length && /^\s+\S/.test(lines[i]) && !/^\s*-(\s|$)/.test(lines[i]) && (km = lines[i].trim().match(kv))) {
+                        obj[km[1]] = unquote(km[2]);
+                        i++;
+                    }
+                    items.push(obj);
+                    continue;
+                }
                 while (i < lines.length && /^\s+\S/.test(lines[i]) && !/^\s*-(\s|$)/.test(lines[i])) {
                     item += ' ' + lines[i].trim();
                     i++;
@@ -360,7 +374,7 @@ const formatPrix = (p) => (p.prix ? `${esc(p.prix)} FCFA` : 'Prix sur demande');
 const orderLink = (p) => whatsappLink(`Bonjour WiLAU BIO ✨, j'ai découvert votre boutique en ligne et je souhaiterais commander le produit suivant : *${p.title}*. Est-il disponible ?`);
 
 function productCard(p, headingTag = 'h3') {
-    return `<div class="product-card reveal active cat-${p.categorie}" data-filtres="${p.filtres.join(' ')}">
+    return `<div class="product-card reveal active cat-${p.categorie}" data-filtres="${p.filtres.join(' ')}" data-slug="${p.slug}">
                         <a href="${p.url}" class="img-wrapper" aria-label="${esc(p.title)}">
                             <img src="${p.image}" alt="${esc(p.title)} — WiLAU BIO" loading="lazy">
                         </a>
@@ -411,7 +425,7 @@ function productPage(p, products, articles) {
         ],
     };
 
-    const body = `    <main class="product-page">
+    const body = `    <main class="product-page" data-slug="${p.slug}">
         <div class="container">
             <nav class="breadcrumb" aria-label="Fil d'Ariane">
                 <a href="/">Accueil</a> <span>›</span>
@@ -430,7 +444,7 @@ function productPage(p, products, articles) {
                     <p class="product-lead">${esc(p.resume)}</p>
                     <div class="product-price product-price-big">${formatPrix(p)}</div>
                     <div class="product-hero-actions">
-                        <a href="${orderLink(p)}" class="btn btn-primary" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Commander sur WhatsApp</a>
+                        <a href="${orderLink(p)}" class="btn btn-primary" data-order target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Commander sur WhatsApp</a>
                         <a href="${whatsappLink(`Bonjour WiLAU BIO, j'aimerais un conseil : le produit *${p.title}* est-il adapté à ma peau ?`)}" class="btn btn-outline" target="_blank" rel="noopener">Demander conseil</a>
                     </div>
                     <ul class="product-reassurance">
@@ -475,9 +489,9 @@ ${p.utilisation ? `
             </div>
 
             <div class="cta-blog mt-3 center p-3 bg-dark text-light border-gold product-cta">
-                <h2 class="gold-text">${esc(p.title)} — ${formatPrix(p)}</h2>
+                <h2 class="gold-text">${esc(p.title)} — <span class="product-price-cta">${formatPrix(p)}</span></h2>
                 <p>Commandez en quelques secondes ou demandez un conseil personnalisé.</p>
-                <a href="${orderLink(p)}" class="btn btn-primary gold-btn" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Commander sur WhatsApp</a>
+                <a href="${orderLink(p)}" class="btn btn-primary gold-btn" data-order target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Commander sur WhatsApp</a>
             </div>
 ${suggestions.length ? `
             <section class="product-related">
@@ -498,7 +512,7 @@ ${linkedArticles.length ? `
         title: `${p.title} — ${p.categorieLabel} | WiLAU BIO Douala & Yaoundé`,
         description: p.descriptionSeo,
         canonical: p.url,
-        float: `<a href="${orderLink(p)}" class="whatsapp-float whatsapp-float-cta" target="_blank" rel="noopener" aria-label="Commander ${esc(p.title)} sur WhatsApp"><i class="fab fa-whatsapp"></i><span>Commander</span></a>`,
+        float: `<a href="${orderLink(p)}" class="whatsapp-float whatsapp-float-cta" data-order target="_blank" rel="noopener" aria-label="Commander ${esc(p.title)} sur WhatsApp"><i class="fab fa-whatsapp"></i><span>Commander</span></a>`,
         ogType: 'product',
         ogImage: p.image,
         head: `${jsonLd(productSchema)}\n    ${jsonLd(breadcrumbSchema)}`,
@@ -656,6 +670,142 @@ ${others.length ? `
     });
 }
 
+
+// ---------------------------------------------------------------------------
+// Promotion (content/promotion.md → promotions.html + data/promo.json)
+// ---------------------------------------------------------------------------
+//
+// Une seule promotion à la fois, à une adresse fixe : /promotions.
+// Le bandeau, les prix barrés des fiches et la fin de la promo sont gérés dans
+// le navigateur (js/main.js lit data/promo.json) : à la date de fin, tout
+// disparaît tout seul, sans nouvelle mise en ligne. Les prix normaux des fiches
+// ne sont jamais modifiés.
+
+// Dates au fuseau du Cameroun (UTC+1) : la promo commence le jour « debut » à 0 h
+// et se termine le jour « fin » à 23 h 59 (inclus).
+const promoStart = (d) => (d ? Date.parse(`${String(d).slice(0, 10)}T00:00:00+01:00`) : -Infinity);
+const promoEnd = (d) => (d ? Date.parse(`${String(d).slice(0, 10)}T23:59:59+01:00`) : Infinity);
+
+const promoLink = (title) => whatsappLink(`Bonjour WiLAU BIO ✨, je veux bénéficier de la promotion sur le produit : *${title}*. Est-il disponible ?`);
+
+function loadPromo(products) {
+    const file = 'content/promotion.md';
+    if (!fs.existsSync(path.join(ROOT, file))) return null;
+    const { data, body } = parseMarkdownFile(read(file));
+    const items = (Array.isArray(data.produits) ? data.produits : [])
+        .map((it) => {
+            const p = products.find((x) => x.slug === slugify(it.produit || ''));
+            if (!p) {
+                if (it.produit) console.warn(`Promotion : produit introuvable « ${it.produit} »`);
+                return null;
+            }
+            const prixPromo = String(it.prix_promo || '').trim();
+            return prixPromo ? { p, prixPromo, prixNormal: String(it.prix_normal || '').trim() || p.prix } : null;
+        })
+        .filter(Boolean);
+    const visuels = (Array.isArray(data.visuels) ? data.visuels : []).map((v) => imageUrl(v, 'assets/images/promo/'));
+    const promo = {
+        titre: String(data.titre || 'Promotion en cours').trim(),
+        debut: data.debut ? String(data.debut).slice(0, 10) : '',
+        fin: data.fin ? String(data.fin).slice(0, 10) : '',
+        body,
+        visuels,
+        items,
+    };
+    promo.active = items.length > 0 && NOW >= promoStart(promo.debut) && NOW <= promoEnd(promo.fin);
+    return promo;
+}
+
+function promoCard({ p, prixPromo, prixNormal }) {
+    return `<div class="product-card reveal active promo-card" data-slug="${p.slug}">
+                        <a href="${p.url}" class="img-wrapper" aria-label="${esc(p.title)}">
+                            <span class="promo-badge">Promo</span>
+                            <img src="${p.image}" alt="${esc(p.title)} — WiLAU BIO" loading="lazy">
+                        </a>
+                        <div class="product-info">
+                            <h3><a href="${p.url}" class="product-title-link">${esc(p.title)}</a></h3>
+                            <div class="product-price promo-price">${prixNormal ? `<s>${esc(prixNormal)} FCFA</s> ` : ''}<strong>${esc(prixPromo)} FCFA</strong></div>
+                            <div class="product-card-actions">
+                                <a href="${promoLink(p.title)}" class="btn btn-primary small" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> J'en profite</a>
+                            </div>
+                        </div>
+                    </div>`;
+}
+
+function promoPage(promo) {
+    const hasPromo = promo && promo.items.length > 0;
+    const finTexte = hasPromo && promo.fin ? formatDate(`${promo.fin}T12:00:00+01:00`) : '';
+    const active = `
+            <div class="promo-active"${hasPromo && promo.active ? '' : ' hidden'}>
+                <div class="section-header center">
+                    <span class="accent-font gold-text">Offre limitée</span>
+                    <h1>${esc(hasPromo ? promo.titre : 'Promotions WiLAU BIO')}</h1>
+                    ${finTexte ? `<p class="promo-dates">Jusqu'au <strong>${finTexte}</strong> inclus, à Douala et Yaoundé.</p>` : ''}
+                </div>
+                ${hasPromo && promo.body ? `<div class="promo-intro center">${markdown(promo.body)}</div>` : ''}
+${hasPromo && promo.visuels.length ? `                <div class="promo-visuels">
+                    ${promo.visuels.map((v, i) => `<img src="${v}" alt="${esc(promo.titre)} — visuel ${i + 1}" loading="${i ? 'lazy' : 'eager'}">`).join('\n                    ')}
+                </div>` : ''}
+                <h2 class="center mt-3">Les produits en promotion</h2>
+                <div class="grid-4 mt-2">
+                    ${hasPromo ? promo.items.map(promoCard).join('\n                    ') : ''}
+                </div>
+                <div class="cta-blog mt-3 center p-3 bg-dark text-light border-gold">
+                    <h2 class="gold-text">Comment en profiter ?</h2>
+                    <p>Cliquez sur « J'en profite » sous le produit choisi : WhatsApp s'ouvre avec votre message prêt à envoyer. Aucune condition, il suffit de commander avant la fin de la promotion.</p>
+                </div>
+            </div>`;
+    const ended = `
+            <div class="promo-ended"${hasPromo && promo.active ? ' hidden' : ''}>
+                <div class="section-header center">
+                    <span class="accent-font gold-text">Promotions</span>
+                    <h1>Aucune promotion en cours pour le moment</h1>
+                    <p>${hasPromo ? `La promotion « ${esc(promo.titre)} » est terminée. Merci à toutes celles qui en ont profité !` : ''} Suivez-nous sur Facebook ou écrivez-nous sur WhatsApp pour être prévenue de la prochaine offre.</p>
+                </div>
+                <div class="center mt-2">
+                    <a href="${whatsappLink("Bonjour WiLAU BIO ✨, j'aimerais être prévenue de votre prochaine promotion.")}" class="btn btn-primary" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Être prévenue sur WhatsApp</a>
+                    <a href="https://www.facebook.com/share/1AywynfpGF/" class="btn btn-outline" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Suivre WiLAU BIO</a>
+                    <p class="mt-2"><a href="/produits-services">Voir tous nos produits →</a></p>
+                </div>
+            </div>`;
+    const body = `    <main class="product-page promo-page"${hasPromo ? ` data-fin="${promo.fin}" data-debut="${promo.debut}"` : ''}>
+        <div class="container">
+            <nav class="breadcrumb" aria-label="Fil d'Ariane">
+                <a href="/">Accueil</a> <span>›</span>
+                <span aria-current="page">Promotions</span>
+            </nav>
+${active}
+${ended}
+        </div>
+    </main>`;
+    const desc = hasPromo && promo.active
+        ? truncate(`${promo.titre} chez WiLAU BIO : prix promotionnels sur ${promo.items.map((i) => i.p.title).join(', ')}. Commande sur WhatsApp, Douala et Yaoundé.`, 158)
+        : 'Les promotions WiLAU BIO sur nos cosmétiques naturels pour peau noire : offres en cours et prochaines promos. Commande sur WhatsApp à Douala et Yaoundé.';
+    return layout({
+        title: 'Promotions WiLAU BIO — Prix promo cosmétiques naturels Douala & Yaoundé',
+        description: desc,
+        canonical: '/promotions',
+        ogImage: hasPromo && promo.visuels[0] ? promo.visuels[0] : (hasPromo ? promo.items[0].p.image : '/assets/logos/logo%20wilau.webp'),
+        body,
+    });
+}
+
+function promoJson(promo) {
+    if (!promo || !promo.items.length) return { produits: {} };
+    return {
+        titre: promo.titre,
+        debut: promo.debut,
+        fin: promo.fin,
+        url: '/promotions',
+        produits: Object.fromEntries(promo.items.map(({ p, prixPromo, prixNormal }) => [p.slug, {
+            title: p.title,
+            prixNormal,
+            prixPromo,
+            commande: promoLink(p.title),
+        }])),
+    };
+}
+
 // ---------------------------------------------------------------------------
 // Remplacement d'une zone générée entre deux marqueurs dans une page existante
 // ---------------------------------------------------------------------------
@@ -680,6 +830,7 @@ function sitemap(products, articles) {
         { loc: '/produits-services', changefreq: 'weekly', priority: '0.9' },
         { loc: '/a-propos-contact', changefreq: 'monthly', priority: '0.7' },
         { loc: '/blog', changefreq: 'weekly', priority: '0.8' },
+        { loc: '/promotions', changefreq: 'weekly', priority: '0.7' },
         ...products.map((p) => ({ loc: p.url, changefreq: 'monthly', priority: '0.8' })),
         ...articles.filter((a) => a.published).map((a) => ({ loc: a.url, changefreq: 'monthly', priority: '0.6', lastmod: a.date && a.date.slice(0, 10) })),
         { loc: '/article-hydratation', changefreq: 'monthly', priority: '0.5' },
@@ -738,6 +889,13 @@ write('data/articles.json', JSON.stringify(articles.map((a) => ({
     url: a.url,
 })), null, 2) + '\n');
 
+const promo = loadPromo(products);
+write('promotions.html', promoPage(promo));
+write('data/promo.json', JSON.stringify(promoJson(promo), null, 2) + '\n');
+
 write('sitemap.xml', sitemap(products, articles));
 
 console.log(`WiLAU BIO : ${products.length} fiches produits, ${articles.length} articles (${published.length} publiés), sitemap régénéré.`);
+console.log(promo && promo.items.length
+    ? `Promotion « ${promo.titre} » : ${promo.items.length} produit(s), du ${promo.debut || '?'} au ${promo.fin || '?'}${promo.active ? ' (en cours)' : ' (inactive)'}.`
+    : 'Aucune promotion renseignée (content/promotion.md).');
