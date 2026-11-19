@@ -705,7 +705,17 @@ function loadPromo(products) {
         })
         .filter(Boolean);
     const visuels = (Array.isArray(data.visuels) ? data.visuels : []).map((v) => imageUrl(v, 'assets/images/promo/'));
+    const soins = (Array.isArray(data.soins) ? data.soins : [])
+        .filter((x) => x && typeof x === 'object' && x.titre)
+        .map((x) => ({
+            titre: String(x.titre).trim(),
+            prix: String(x.prix || '').trim(),
+            details: String(x.details || '').trim(),
+            adresse: String(x.adresse || '').trim(),
+            visuel: x.visuel ? imageUrl(x.visuel, 'assets/images/promo/') : '',
+        }));
     const promo = {
+        soins,
         titre: String(data.titre || 'Promotion en cours').trim(),
         debut: data.debut ? String(data.debut).slice(0, 10) : '',
         fin: data.fin ? String(data.fin).slice(0, 10) : '',
@@ -751,6 +761,18 @@ ${hasPromo && promo.visuels.length ? `                <div class="promo-visuels"
                 <div class="grid-4 mt-2">
                     ${hasPromo ? promo.items.map(promoCard).join('\n                    ') : ''}
                 </div>
+${hasPromo && promo.soins.length ? promo.soins.map((x) => `
+                <section class="promo-soin mt-3">
+                    ${x.visuel ? `<img src="${x.visuel}" alt="${esc(x.titre)} — WiLAU BIO" loading="lazy">` : ''}
+                    <div class="promo-soin-info">
+                        <span class="accent-font gold-text">Au cabinet</span>
+                        <h2>${esc(x.titre)}</h2>
+                        ${x.prix ? `<div class="product-price product-price-big promo-price"><strong>${esc(x.prix)} FCFA</strong></div>` : ''}
+                        ${x.details ? `<p>${esc(x.details)}</p>` : ''}
+                        ${x.adresse ? `<p><i class="fas fa-map-marker-alt gold-text"></i> ${esc(x.adresse)}</p>` : ''}
+                        <a href="${whatsappLink(`Bonjour WiLAU BIO ✨, je veux bénéficier de la promotion : *${x.titre}*${x.prix ? ` à ${x.prix} FCFA` : ''}. Quelles sont vos disponibilités ?`)}" class="btn btn-primary" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Réserver sur WhatsApp</a>
+                    </div>
+                </section>`).join('') : ''}
                 <div class="cta-blog mt-3 center p-3 bg-dark text-light border-gold">
                     <h2 class="gold-text">Comment en profiter ?</h2>
                     <p>Cliquez sur « J'en profite » sous le produit choisi : WhatsApp s'ouvre avec votre message prêt à envoyer. Aucune condition, il suffit de commander avant la fin de la promotion.</p>

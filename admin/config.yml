@@ -90,3 +90,13 @@ collections:
               - { label: "Prix promo en FCFA", name: "prix_promo", widget: "string" }
               - { label: "Flyer du produit (remplace la photo sur la page promo)", name: "visuel", widget: "image", required: false }
           - { label: "Texte de présentation (facultatif)", name: "body", widget: "markdown", required: false }
+          - label: "Promotions soins au cabinet (facultatif)"
+            name: "soins"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Nom de l'offre", name: "titre", widget: "string" }
+              - { label: "Prix en FCFA", name: "prix", widget: "string", required: false }
+              - { label: "Ce que comprend l'offre", name: "details", widget: "text", required: false }
+              - { label: "Adresse", name: "adresse", widget: "string", required: false }
+              - { label: "Flyer", name: "visuel", widget: "image", required: false }

@@ -58,17 +58,53 @@
       "prixPromo": "3 500",
       "commande": "https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20je%20veux%20b%C3%A9n%C3%A9ficier%20de%20la%20promotion%20sur%20le%20produit%20%3A%20*Lotion%20Green%20Moon*.%20Est-il%20disponible%20%3F"
     },
-    "creme-visage-shine": {
-      "title": "Crème de visage Shine",
-      "prixNormal": "5 000",
-      "prixPromo": "3 500",
-      "commande": "https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20je%20veux%20b%C3%A9n%C3%A9ficier%20de%20la%20promotion%20sur%20le%20produit%20%3A%20*Cr%C3%A8me%20de%20visage%20Shine*.%20Est-il%20disponible%20%3F"
+    "creme-visage-diamond": {
+      "title": "Crème de visage Diamond",
+      "prixNormal": "7 500",
+      "prixPromo": "5 000",
+      "commande": "https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20je%20veux%20b%C3%A9n%C3%A9ficier%20de%20la%20promotion%20sur%20le%20produit%20%3A%20*Cr%C3%A8me%20de%20visage%20Diamond*.%20Est-il%20disponible%20%3F"
     },
     "creme-visage-diva": {
       "title": "Crème de visage Diva",
       "prixNormal": "7 500",
       "prixPromo": "5 000",
       "commande": "https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20je%20veux%20b%C3%A9n%C3%A9ficier%20de%20la%20promotion%20sur%20le%20produit%20%3A%20*Cr%C3%A8me%20de%20visage%20Diva*.%20Est-il%20disponible%20%3F"
+    },
+    "creme-visage-kimmy": {
+      "title": "Crème de visage Kimmy",
+      "prixNormal": "5 000",
+      "prixPromo": "3 500",
+      "commande": "https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20je%20veux%20b%C3%A9n%C3%A9ficier%20de%20la%20promotion%20sur%20le%20produit%20%3A%20*Cr%C3%A8me%20de%20visage%20Kimmy*.%20Est-il%20disponible%20%3F"
+    },
+    "creme-visage-shine": {
+      "title": "Crème de visage Shine",
+      "prixNormal": "5 000",
+      "prixPromo": "3 500",
+      "commande": "https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20je%20veux%20b%C3%A9n%C3%A9ficier%20de%20la%20promotion%20sur%20le%20produit%20%3A%20*Cr%C3%A8me%20de%20visage%20Shine*.%20Est-il%20disponible%20%3F"
+    },
+    "lait-corps-diamond": {
+      "title": "Lait corps Diamond",
+      "prixNormal": "17 500",
+      "prixPromo": "14 000",
+      "commande": "https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20je%20veux%20b%C3%A9n%C3%A9ficier%20de%20la%20promotion%20sur%20le%20produit%20%3A%20*Lait%20corps%20Diamond*.%20Est-il%20disponible%20%3F"
+    },
+    "lait-corps-diva": {
+      "title": "Lait corps Diva",
+      "prixNormal": "15 000",
+      "prixPromo": "12 000",
+      "commande": "https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20je%20veux%20b%C3%A9n%C3%A9ficier%20de%20la%20promotion%20sur%20le%20produit%20%3A%20*Lait%20corps%20Diva*.%20Est-il%20disponible%20%3F"
+    },
+    "lait-corps-kimmy": {
+      "title": "Lait corps Kimmy",
+      "prixNormal": "12 500",
+      "prixPromo": "10 000",
+      "commande": "https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20je%20veux%20b%C3%A9n%C3%A9ficier%20de%20la%20promotion%20sur%20le%20produit%20%3A%20*Lait%20corps%20Kimmy*.%20Est-il%20disponible%20%3F"
+    },
+    "lait-corps-shine": {
+      "title": "Lait corps Shine",
+      "prixNormal": "10 000",
+      "prixPromo": "7 500",
+      "commande": "https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20je%20veux%20b%C3%A9n%C3%A9ficier%20de%20la%20promotion%20sur%20le%20produit%20%3A%20*Lait%20corps%20Shine*.%20Est-il%20disponible%20%3F"
     },
     "gel-douche-glow": {
       "title": "Gel Douche Glow",
@@ -81,6 +117,12 @@
       "prixNormal": "7 500",
       "prixPromo": "5 000",
       "commande": "https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20je%20veux%20b%C3%A9n%C3%A9ficier%20de%20la%20promotion%20sur%20le%20produit%20%3A%20*Gel%20Douche%20Light*.%20Est-il%20disponible%20%3F"
+    },
+    "gommage-lyly": {
+      "title": "Gommage Lyly",
+      "prixNormal": "7 500",
+      "prixPromo": "5 000",
+      "commande": "https://wa.me/237699430350?text=Bonjour%20WiLAU%20BIO%20%E2%9C%A8%2C%20je%20veux%20b%C3%A9n%C3%A9ficier%20de%20la%20promotion%20sur%20le%20produit%20%3A%20*Gommage%20Lyly*.%20Est-il%20disponible%20%3F"
     },
     "serum-active-pousse-faithy": {
       "title": "Sérum Active Pousse Faithy",
