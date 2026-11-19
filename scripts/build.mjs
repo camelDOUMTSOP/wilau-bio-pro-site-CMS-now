@@ -700,7 +700,8 @@ function loadPromo(products) {
                 return null;
             }
             const prixPromo = String(it.prix_promo || '').trim();
-            return prixPromo ? { p, prixPromo, prixNormal: String(it.prix_normal || '').trim() || p.prix } : null;
+            const visuel = it.visuel ? imageUrl(it.visuel, 'assets/images/promo/') : '';
+            return prixPromo ? { p, prixPromo, prixNormal: String(it.prix_normal || '').trim() || p.prix, visuel } : null;
         })
         .filter(Boolean);
     const visuels = (Array.isArray(data.visuels) ? data.visuels : []).map((v) => imageUrl(v, 'assets/images/promo/'));
@@ -716,11 +717,11 @@ function loadPromo(products) {
     return promo;
 }
 
-function promoCard({ p, prixPromo, prixNormal }) {
-    return `<div class="product-card reveal active promo-card" data-slug="${p.slug}">
+function promoCard({ p, prixPromo, prixNormal, visuel }) {
+    return `<div class="product-card reveal active promo-card${visuel ? ' promo-card-flyer' : ''}" data-slug="${p.slug}">
                         <a href="${p.url}" class="img-wrapper" aria-label="${esc(p.title)}">
-                            <span class="promo-badge">Promo</span>
-                            <img src="${p.image}" alt="${esc(p.title)} — WiLAU BIO" loading="lazy">
+                            ${visuel ? '' : '<span class="promo-badge">Promo</span>'}
+                            <img src="${visuel || p.image}" alt="${esc(p.title)} en promotion — ${esc(prixPromo)} FCFA au lieu de ${esc(prixNormal)} FCFA — WiLAU BIO" loading="lazy">
                         </a>
                         <div class="product-info">
                             <h3><a href="${p.url}" class="product-title-link">${esc(p.title)}</a></h3>
@@ -785,7 +786,7 @@ ${ended}
         title: 'Promotions WiLAU BIO — Prix promo cosmétiques naturels Douala & Yaoundé',
         description: desc,
         canonical: '/promotions',
-        ogImage: hasPromo && promo.visuels[0] ? promo.visuels[0] : (hasPromo ? promo.items[0].p.image : '/assets/logos/logo%20wilau.webp'),
+        ogImage: hasPromo ? (promo.visuels[0] || promo.items.find((i) => i.visuel)?.visuel || promo.items[0].p.image) : '/assets/logos/logo%20wilau.webp',
         body,
     });
 }

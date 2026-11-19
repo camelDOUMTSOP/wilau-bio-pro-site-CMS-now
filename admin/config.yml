@@ -88,4 +88,5 @@ collections:
               - { label: "Produit (nom de fichier, ex. serum-potion-magique)", name: "produit", widget: "string" }
               - { label: "Prix normal en FCFA (vide = prix de la fiche)", name: "prix_normal", widget: "string", required: false }
               - { label: "Prix promo en FCFA", name: "prix_promo", widget: "string" }
+              - { label: "Flyer du produit (remplace la photo sur la page promo)", name: "visuel", widget: "image", required: false }
           - { label: "Texte de présentation (facultatif)", name: "body", widget: "markdown", required: false }

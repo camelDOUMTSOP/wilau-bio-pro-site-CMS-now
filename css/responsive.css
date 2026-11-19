@@ -270,3 +270,10 @@ html, body {
         transform: scale(1.65) !important;
     }
 }
+/* Page promo : les flyers s'affichent en entier (pas de zoom ni de recadrage) */
+@media (max-width: 768px) {
+    .product-card.promo-card-flyer .img-wrapper { aspect-ratio: auto !important; height: auto !important; }
+    .product-card.promo-card-flyer .img-wrapper img { transform: none !important; height: auto !important; }
+    .promo-card .product-price.promo-price { font-size: 0.85rem !important; line-height: 1.4; }
+    .promo-card .product-price.promo-price s { display: block; margin: 0; }
+}

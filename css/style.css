@@ -635,7 +635,8 @@ body:not(.bg-cream) .header:not(.scrolled) .logo, body:not(.bg-cream) .header:no
     padding: 4px 10px; border-radius: 50px; text-decoration: none;
 }
 .promo-badge-inline { position: static; display: inline-block; vertical-align: middle; margin-left: 0.4rem; }
-.promo-price s { color: #9ca3af; font-weight: 400; font-size: 0.85em; margin-right: 0.3rem; }
+.promo-price s { color: #9ca3af; font-weight: 400; font-size: 0.85em; margin-right: 0.3rem; white-space: nowrap; }
+.promo-price strong { white-space: nowrap; }
 .promo-price strong { color: #d62828; }
 .nav-menu a.nav-promo { color: #d62828; font-weight: 700; }
 
@@ -647,3 +648,5 @@ body:not(.bg-cream) .header:not(.scrolled) .logo, body:not(.bg-cream) .header:no
     transition: var(--transition);
 }
 .promo-float:hover { transform: scale(1.05); color: #fff; }
+.promo-card-flyer .img-wrapper { height: auto !important; aspect-ratio: auto !important; padding: 0 !important; }
+.promo-card-flyer .img-wrapper img { height: auto !important; aspect-ratio: auto !important; object-fit: contain !important; border-radius: 1rem 1rem 0 0; }
